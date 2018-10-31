@@ -1,0 +1,15 @@
+Player:
+	Attributes:
+		Gravity,
+		Thrust up,
+		Move sideways?,
+	Power ups:
+		Gravity suit,
+		Motorcycle,
+		Bigman suit
+
+Obstacles:
+	Zapper,
+	Spinning zapper,
+	Rockets,
+	Lazers.
