@@ -5,7 +5,8 @@
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "browser-sync start --server --files \"js/*.js\" \"index.html\" "
+    "start": "browser-sync start --server --files \"js/*.js\" \"index.html\" ",
+    "eslint": "eslint */*.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,9 @@
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "browser-sync": "^2.26.3"
+    "browser-sync": "^2.26.3",
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
   }
 }
