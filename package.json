@@ -17,7 +17,9 @@
     "url": "https://github.com/atlimp/jetpackjoyride/issues"
   },
   "homepage": "https://github.com/atlimp/jetpackjoyride#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
     "browser-sync": "^2.26.3"
   }
 }
