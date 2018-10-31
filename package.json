@@ -1,0 +1,23 @@
+{
+  "name": "jetpackjoyride",
+  "version": "1.0.0",
+  "description": "Final project for Computer game programming at HI",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "browser-sync start --server --files \"js/*.js\" \"index.html\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atlimp/jetpackjoyride.git"
+  },
+  "author": "Atli Marcher Pálsson, Marteinn Eiríksson, Matthías Dan Flemmingsson, Loftur Einarsson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atlimp/jetpackjoyride/issues"
+  },
+  "homepage": "https://github.com/atlimp/jetpackjoyride#readme",
+  "dependencies": {
+    "browser-sync": "^2.26.3"
+  }
+}
