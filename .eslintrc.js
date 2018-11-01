@@ -1,11 +1,10 @@
-module.exports = {
-  extends: 'airbnb-base',
-  env: {
-    node: true,
-    mocha: true,
-  },
-  rules: {
-    'no-console': ['error', { allow: ['info', 'warn', 'error'] }],
-    'linebreak-style': 0,
-  }
-};
+// module.exports = {
+//   extends: 'airbnb-base',
+//   env: {
+//     browser: true,
+//   },
+//   rules: {
+//     'linebreak-style': 0,
+//     'class-methods-use-this': 0
+//   }
+// };

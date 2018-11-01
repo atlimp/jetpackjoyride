@@ -3,104 +3,89 @@
 // A module of utility functions, with no private elements to hide.
 // An easy case; just return an object containing the public stuff.
 
-"use strict";
+const util = {
 
-
-var util = {
-
-
-// RANGES
-// ======
-
-clampRange: function(value, lowBound, highBound) {
+  // RANGES
+  // ======
+  clampRange: (value, lowBound, highBound) => {
+    let val = value;
     if (value < lowBound) {
-	value = lowBound;
+      val = lowBound;
     } else if (value > highBound) {
-	value = highBound;
+      val = highBound;
     }
-    return value;
-},
+    return val;
+  },
 
-wrapRange: function(value, lowBound, highBound) {
+  wrapRange: (value, lowBound, highBound) => {
+    let val = value;
     while (value < lowBound) {
-	value += (highBound - lowBound);
+      val += (highBound - lowBound);
     }
     while (value > highBound) {
-	value -= (highBound - lowBound);
+      val -= (highBound - lowBound);
     }
-    return value;
-},
+    return val;
+  },
 
-isBetween: function(value, lowBound, highBound) {
+  isBetween: (value, lowBound, highBound) => {
     if (value < lowBound) { return false; }
     if (value > highBound) { return false; }
     return true;
-},
+  },
 
 
-// RANDOMNESS
-// ==========
+  // RANDOMNESS
+  // ==========
 
-randRange: function(min, max) {
-    return (min + Math.random() * (max - min));
-},
+  randRange: (min, max) => (min + Math.random() * (max - min)),
 
 
-// MISC
-// ====
+  // MISC
+  // ====
 
-square: function(x) {
-    return x*x;
-},
+  square: x => x * x,
 
+  // DISTANCES
+  // =========
 
-// DISTANCES
-// =========
+  distSq: (x1, y1, x2, y2) => this.square(x2 - x1) + this.square(y2 - y1),
 
-distSq: function(x1, y1, x2, y2) {
-    return this.square(x2-x1) + this.square(y2-y1);
-},
-
-wrappedDistSq: function(x1, y1, x2, y2, xWrap, yWrap) {
-    var dx = Math.abs(x2-x1),
-	dy = Math.abs(y2-y1);
-    if (dx > xWrap/2) {
-	dx = xWrap - dx;
-    };
-    if (dy > yWrap/2) {
-	dy = yWrap - dy;
-    }
+  wrappedDistSq: (x1, y1, x2, y2, xWrap, yWrap) => {
+    let dx = Math.abs(x2 - x1);
+    let dy = Math.abs(y2 - y1);
+    if (dx > xWrap / 2) dx = xWrap - dx;
+    if (dy > yWrap / 2) dy = yWrap - dy;
     return this.square(dx) + this.square(dy);
-},
+  },
 
 
-// CANVAS OPS
-// ==========
+  // CANVAS OPS
+  // ==========
 
-clearCanvas: function (ctx) {
-    var prevfillStyle = ctx.fillStyle;
-    ctx.fillStyle = "white";
+  clearCanvas: (ctx) => {
+    const prevfillStyle = ctx.fillStyle;
+    ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     ctx.fillStyle = prevfillStyle;
-},
+  },
 
-strokeCircle: function (ctx, x, y, r) {
+  strokeCircle: (ctx, x, y, r) => {
     ctx.beginPath();
     ctx.arc(x, y, r, 0, Math.PI * 2);
     ctx.stroke();
-},
+  },
 
-fillCircle: function (ctx, x, y, r) {
+  fillCircle: (ctx, x, y, r) => {
     ctx.beginPath();
     ctx.arc(x, y, r, 0, Math.PI * 2);
     ctx.fill();
-},
+  },
 
-fillBox: function (ctx, x, y, w, h, style) {
-    var oldStyle = ctx.fillStyle;
+  fillBox: (ctx, x, y, w, h, style) => {
+    const oldStyle = ctx.fillStyle;
     ctx.fillStyle = style;
     ctx.fillRect(x, y, w, h);
     ctx.fillStyle = oldStyle;
-}
-
+  },
 };

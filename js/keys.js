@@ -17,9 +17,9 @@ function handleKeyup(evt) {
 // This allows a keypress to be "one-shot" e.g. for toggles
 // ..until the auto-repeat kicks in, that is.
 //
-function eatKey(keyCode) {
-  const isDown = keys[keyCode];
-  keys[keyCode] = false;
+function eatKey(code) {
+  const isDown = keys[code];
+  keys[code] = false;
   return isDown;
 }
 
@@ -28,5 +28,5 @@ function keyCode(keyChar) {
   return keyChar.charCodeAt(0);
 }
 
-window.addEventListener("keydown", handleKeydown);
-window.addEventListener("keyup", handleKeyup);
+window.addEventListener('keydown', handleKeydown);
+window.addEventListener('keyup', handleKeyup);

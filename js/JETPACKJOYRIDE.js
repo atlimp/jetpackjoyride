@@ -17,15 +17,27 @@ function renderSimulation(ctx) {
 
 const g_images = {};
 
-function requestPreloads() {
+async function preload() {
   const requiredImages = {
-    player: '../megaman.png',
+    playerStand: '../megaman.png',
+    playerJump: '../megamanjump.png',
   };
 
-  imagesPreload(requiredImages, g_images, () => {
-    entityManager.createPlayer(g_images.player)
+  const keys = Object.keys(requiredImages);
+
+  try {
+    for (let i = 0; i < keys.length; i++) {
+      const image = await loadImage(requiredImages[keys[i]]);
+      g_images[keys[i]] = image;
+    }
+    entityManager.createPlayer({
+      jump: new Sprite(g_images.playerJump),
+      stand: new Sprite(g_images.playerStand),
+    });
     main.init();
-  });
+  } catch (e) {
+    console.error(e);
+  }
 }
 
-requestPreloads();
+preload();

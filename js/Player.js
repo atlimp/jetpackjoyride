@@ -2,17 +2,21 @@ const NOMINAL_THRUST = -0.4;
 
 class Player {
 
-  constructor(sprite) {
+  constructor(sprites) {
     this.x = g_canvas.width / 2;
     this.y = g_canvas.height / 2;
     this.velY = 0;
-    this.sprite = sprite;
+    this.sprites = sprites;
     this.KEY_THRUST = keyCode('W');
     this.gravity = 0.12;
+    this.halfHeight = (this.sprites.jump.height * this.sprites.jump.scale) / 2;
   }
 
   render(ctx) {
-    this.sprite.drawCentredAt(ctx, this.x, this.y);
+    if (this.velY !== 0 || this.y < g_canvas.height - this.halfHeight)
+      this.sprites.jump.drawCentredAt(ctx, this.x, this.y);
+    else
+      this.sprites.stand.drawCentredAt(ctx, this.x, this.y);
   }
 
   update(du) {
@@ -21,6 +25,18 @@ class Player {
     thrust += this.gravity;
 
     this.applyAccel(thrust, du);
+
+    this.handleEdges();
+  }
+
+  handleEdges() {
+    if (this.y < this.halfHeight) {
+      this.y = 0 + this.halfHeight;
+      this.velY = 0;
+    } else if (this.y > g_canvas.height - this.halfHeight) {
+      this.y = g_canvas.height - this.halfHeight;
+      this.velY = 0;
+    }
   }
 
   computeThrust() {
