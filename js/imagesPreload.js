@@ -1,22 +1,6 @@
-// Multi-Image Preloader
-
-"use strict";
-
-/*jslint browser: true, devel: true, white: true */
-
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
-/*
-0        1         2         3         4         5         6         7         8
-12345678901234567890123456789012345678901234567890123456789012345678901234567890
-*/
-
-// Extend the Image prototype (aka augment the "class")
-// with my asyncLoad wrapper.
-//
-// I prefer this approach to setting onload/onerror/src directly.
-//
 Image.prototype.asyncLoad = function(src, asyncCallback) {
 
     // Must assign the callback handlers before setting `this.src`,

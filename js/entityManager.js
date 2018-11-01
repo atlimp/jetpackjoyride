@@ -1,26 +1,23 @@
-/*
+class EntityManager {
 
-entityManager.js
+  constructor() {
+    this.obstacles = [];
+  }
 
-We create this module as a single global object, and initialise it
-with suitable 'data' and 'methods'.
+  createPlayer(image) {
+    this.player = new Player(new Sprite(image))
+  }
 
-"Private" properties are denoted by an underscore prefix convention.
+  render(ctx) {
+    this.obstacles.forEach(obstacle => obstacle.render(ctx));
+    this.player.render(ctx);
+  }
 
-*/
-
-
-"use strict";
-
-
-// Tell jslint not to complain about my use of underscore prefixes (nomen),
-// my flattening of some indentation (white), or my use of incr/decr ops
-// (plusplus).
-//
-/*jslint nomen: true, white: true, plusplus: true*/
-
-
-var entityManager = {
+  update(du) {
+    this.obstacles.forEach(obstacle => obstacle.update(du));
+    this.player.update(du);
+  }
+}
 
 // "PRIVATE" DATA
 /*
@@ -185,7 +182,3 @@ render: function(ctx) {
     }
 }
 */
-}
-
-// Some deferred setup which needs the object to have been created first
-entityManager.deferredSetup();
