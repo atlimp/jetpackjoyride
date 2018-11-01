@@ -1,3 +1,4 @@
+https://docs.google.com/spreadsheets/d/1DokRZg1yP8iNIUEXghCzyZ9wqqHzKy-q2kg9LfCVPOU/edit?usp=sharing
 Player:
 	Attributes:
 		Gravity,
