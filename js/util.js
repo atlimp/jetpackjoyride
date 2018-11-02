@@ -82,10 +82,7 @@ const util = {
     ctx.fill();
   },
 
-  fillBox: (ctx, x, y, w, h, style) => {
-    const oldStyle = ctx.fillStyle;
-    ctx.fillStyle = style;
+  fillBox: (ctx, x, y, w, h) => {
     ctx.fillRect(x, y, w, h);
-    ctx.fillStyle = oldStyle;
   },
 };

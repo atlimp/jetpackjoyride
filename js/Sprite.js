@@ -1,10 +1,10 @@
 class Sprite {
-  constructor(image) {
+  constructor(image, scale) {
     this.image = image;
 
     this.width = image.width;
     this.height = image.height;
-    this.scale = 0.2;
+    this.scale = scale || 1;
   }
 
   drawCentredAt(ctx, cx, cy) {

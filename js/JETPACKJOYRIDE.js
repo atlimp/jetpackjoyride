@@ -4,6 +4,11 @@ const g_ctx = g_canvas.getContext("2d");
 const entityManager = new EntityManager();
 
 function updateSimulation(du) {
+
+  if (Math.random() < 0.01) {
+    entityManager.createRandomObstacle();
+  }
+
   entityManager.update(du);
 }
 
@@ -31,8 +36,8 @@ async function preload() {
       g_images[keys[i]] = image;
     }
     entityManager.createPlayer({
-      jump: new Sprite(g_images.playerJump),
-      stand: new Sprite(g_images.playerStand),
+      jump: g_images.playerJump,
+      stand: g_images.playerStand,
     });
     main.init();
   } catch (e) {
