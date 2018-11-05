@@ -6,7 +6,7 @@ const entityManager = new EntityManager();
 function updateSimulation(du) {
 
   if (Math.random() < 0.01) {
-		entityManager.createRandomObstacle();
+    entityManager.createRandomObstacle();
   }
 
   entityManager.update(du);

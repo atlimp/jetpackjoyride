@@ -1,8 +1,9 @@
-class Obstacle {
+class Obstacle extends Entity {
 
   constructor(sprite) {
+    super();
+    
     this.sprite = sprite;
-
     this.x = g_canvas.width;
     this.y = util.randRange(0, g_canvas.height);
 
@@ -12,10 +13,13 @@ class Obstacle {
   }
 
   update(du) {
+    spatialManager.unregister(this);
+
     this.x += this.velX * du;
 
-	return this.x + this.halfWidth < 0 ? entityManager.KILL_ME_NOW : 1;
+    spatialManager.register(this);
 
+    return this.x < -g_canvas.width ? entityManager.KILL_ME_NOW : 1;
   }
 
   render(ctx) {

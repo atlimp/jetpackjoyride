@@ -1,6 +1,5 @@
 class EntityManager {
 
-
   constructor() {
     this.obstacles = [];
     this.KILL_ME_NOW = -1;
