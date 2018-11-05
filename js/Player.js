@@ -13,10 +13,12 @@ class Player {
   }
 
   render(ctx) {
-    if (this.velY !== 0 || this.y < g_canvas.height - this.halfHeight)
+    if (this.velY !== 0 || this.y < g_canvas.height - this.halfHeight) {
       this.sprites.jump.drawCentredAt(ctx, this.x, this.y);
-    else
+    }
+    else {
       this.sprites.stand.drawCentredAt(ctx, this.x, this.y);
+    }
   }
 
   update(du) {
@@ -27,8 +29,6 @@ class Player {
     this.applyAccel(thrust, du);
 
     this.handleEdges();
-	
-	spatialManager.register(this);
   }
 
   handleEdges() {
