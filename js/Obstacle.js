@@ -2,7 +2,7 @@ class Obstacle extends Entity {
 
   constructor(sprite) {
     super();
-    
+
     this.sprite = sprite;
     this.x = g_canvas.width;
     this.y = util.randRange(0, g_canvas.height);

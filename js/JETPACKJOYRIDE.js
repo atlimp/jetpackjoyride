@@ -21,7 +21,17 @@ function gatherInputs() {
 
 }
 
+let xOff = 0;
 function renderSimulation(ctx) {
+  const width = g_images.street1.width;
+  ctx.save();
+  ctx.translate(xOff, 0);
+  ctx.drawImage(g_images.street1, 0, 0);
+  ctx.drawImage(g_images.street2, width, 0);
+  ctx.drawImage(g_images.street1, width * 2, 0);
+  xOff -= 3;
+  xOff %= width * 2;
+  ctx.restore();
   entityManager.render(ctx);
 }
 
@@ -31,6 +41,8 @@ async function preload() {
   const requiredImages = {
     playerStand: '../megaman.png',
     playerJump: '../megamanjump.png',
+    street1: '../street1.png',
+    street2: '../street2.png'
   };
 
   const keys = Object.keys(requiredImages);
