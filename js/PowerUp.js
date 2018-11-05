@@ -1,36 +1,40 @@
 class PowerUp {
-    constructor(descr) {
-        for (var property in descr) {
-            this[property] = descr[property];
-        }
+    constructor(rand) {
+        // for (var property in descr) {
+        //     this[property] = descr[property];
+        // }
+        this.yOff = 20;
+        this.xOff = 40;
         this.velX = -2;
-        this.velY = 2;
+        this.velY = 0;
+        this.radius = 15;
+        this.cx = g_canvas.width + this.xOff;
+        this.cy = util.randRange(
+            0 + this.yOff, 
+            g_canvas.height - this.yOff
+        );
+        
+
+        
     }
 
-    render() {
+    render(ctx) {
+        ctx.save();
         g_ctx.fillStyle = 'red';
-        util.fillCircle(this.cx, this.cy, this.radius);
-        //g_ctx.fillStyle = 'black';
+        util.fillCircle(ctx, this.cx, this.cy, this.radius);
+        ctx.restore();
     }
 
     update(du) {
+        
         let nextX = this.cx + this.velX * du;
         let nextY = this.cy + this.yVel * du;
         
         this.cy += this.velY * du;
         this.cx += this.velX * du;
-    }
 
-    /*
-    sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
+        return this.cx < -g_canvas.width ? entityManager.KILL_ME_NOW : 1;
     }
-
-    async powerUpBoolTimer() {
-        await sleep(10000);
-        // timer fyrir byssuna?
-    }
-    */
 
     
 

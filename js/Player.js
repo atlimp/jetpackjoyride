@@ -68,4 +68,5 @@ class Player extends Entity {
 
     this.y += avgVelY * du;
   }
+
 }
