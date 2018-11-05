@@ -2,6 +2,7 @@ const g_canvas = document.getElementById("myCanvas");
 const g_ctx = g_canvas.getContext("2d");
 
 const entityManager = new EntityManager();
+const background = new Background();
 
 function updateSimulation(du) {
 
@@ -14,6 +15,7 @@ function updateSimulation(du) {
     entityManager.createPowerUp();
   }
 
+  background.update(du);
   entityManager.update(du);
 }
 
@@ -21,28 +23,33 @@ function gatherInputs() {
 
 }
 
-let xOff = 0;
 function renderSimulation(ctx) {
-  const width = g_images.street1.width;
-  ctx.save();
-  ctx.translate(xOff, 0);
-  ctx.drawImage(g_images.street1, 0, 0);
-  ctx.drawImage(g_images.street2, width, 0);
-  ctx.drawImage(g_images.street1, width * 2, 0);
-  xOff -= 3;
-  xOff %= width * 2;
-  ctx.restore();
+  background.render(ctx);
   entityManager.render(ctx);
 }
 
 const g_images = {};
 
+function start() {
+  entityManager.createPlayer({
+    jump: g_images.playerJump,
+    stand: g_images.playerStand,
+  });
+
+  background.setImages([
+    g_images.street1,
+    g_images.street2
+  ]);
+
+  main.init();
+}
+
 async function preload() {
   const requiredImages = {
-    playerStand: '../megaman.png',
-    playerJump: '../megamanjump.png',
-    street1: '../street1.png',
-    street2: '../street2.png'
+    playerStand: '../img/megaman.png',
+    playerJump: '../img/megamanjump.png',
+    street1: '../img/street1.png',
+    street2: '../img/street2.png'
   };
 
   const keys = Object.keys(requiredImages);
@@ -52,11 +59,8 @@ async function preload() {
       const image = await loadImage(requiredImages[keys[i]]);
       g_images[keys[i]] = image;
     }
-    entityManager.createPlayer({
-      jump: g_images.playerJump,
-      stand: g_images.playerStand,
-    });
-    main.init();
+
+    start();
   } catch (e) {
     console.error(e);
   }
