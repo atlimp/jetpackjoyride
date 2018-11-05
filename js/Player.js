@@ -1,4 +1,4 @@
-const NOMINAL_THRUST = -0.4;
+const NOMINAL_THRUST = -0.25;
 
 class Player {
 
@@ -9,6 +9,7 @@ class Player {
     this.sprites = sprites;
     this.KEY_THRUST = keyCode('W');
     this.gravity = 0.12;
+    this.initialGravity = 0.12;
     this.halfHeight = (this.sprites.jump.height * this.sprites.jump.scale) / 2;
   }
 
@@ -43,7 +44,13 @@ class Player {
 
   computeThrust() {
     let thrust = 0;
-    if (keys[this.KEY_THRUST]) thrust += NOMINAL_THRUST;
+    if (keys[this.KEY_THRUST]) {
+      thrust += NOMINAL_THRUST;
+      this.gravity = 0.02;
+    }
+    else {
+      this.gravity = this.initialGravity;
+    }
     return thrust;
   }
 

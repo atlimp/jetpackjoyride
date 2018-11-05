@@ -9,6 +9,11 @@ function updateSimulation(du) {
 		entityManager.createRandomObstacle();
   }
 
+  // random fyrir new power-up
+  if (Math.floor(Math.random()*1000) < 200) {
+    entityManager.createPowerUp();
+  }
+
   entityManager.update(du);
 }
 

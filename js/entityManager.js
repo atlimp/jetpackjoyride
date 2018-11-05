@@ -3,6 +3,8 @@ class EntityManager {
 
   constructor() {
     this.obstacles = [];
+    // powerup fylki
+    this.powerup = [];
     this.KILL_ME_NOW = -1;
 	this.objCounter = 0;
 	
@@ -20,6 +22,15 @@ class EntityManager {
     this.obstacles.push(new Zapper());
   }
 
+  // búa til powerup
+  createPowerUp() {
+    this.powerup.push(new PowerUp({
+      cx: 50,
+      cy: 50,
+      radius: 3
+    }));
+  }
+
   render(ctx) {
     this.obstacles.forEach(obstacle => obstacle.render(ctx));
     this.player.render(ctx);
@@ -33,6 +44,10 @@ class EntityManager {
     }
 	
     this.player.update(du);
+
+    for (let i = this.powerup.length - 1; i >= 0; i--) {
+      this.powerup[i].update(du);
+    }
   }
 	/*Return pos of an obstacle*/
   getPos() {
