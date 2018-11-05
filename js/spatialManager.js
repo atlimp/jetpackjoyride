@@ -13,7 +13,6 @@ const spatialManager = {
   },
 
   unregister: function(entity) {
-    console.log(entity);
     const spatialID = entity.getSpatialID();
     delete this._entities[spatialID];
   },
