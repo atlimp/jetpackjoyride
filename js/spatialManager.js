@@ -36,13 +36,13 @@ getNewSpatialID : function() {
 },
 
 register: function(entity) {
-    var pos = entity.getPos();
-    var spatialID = entity.getSpatialID();
+    var pos = entityManager.getPos();
+    var spatialID = entityManager.getSpatialID();
     this._entities[spatialID] = entity;
 },
 
 unregister: function(entity) {
-    var spatialID = entity.getSpatialID();
+    var spatialID = entityManager.getSpatialID();
     delete this._entities[spatialID];
 },
 

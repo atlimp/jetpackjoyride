@@ -1,13 +1,20 @@
 class Zapper extends Obstacle {
 
+	
   constructor(sprite) {
     super(sprite);
     this.rotation = util.randRange(-Math.PI / 2, Math.PI / 2);
     this.spacing = util.randRange(100, 150);
+	this.numberOfZappers = 0;
+	this.maxZapper = 3;
   }
 
   render(ctx) {
-    ctx.save();
+	this.drawZapper(ctx);
+  }
+  
+  drawZapper(ctx) {
+	ctx.save();
 
     // Matrix magic for rotation
     ctx.translate(this.x, this.y);
@@ -26,3 +33,4 @@ class Zapper extends Obstacle {
     ctx.restore();
   }
 }
+ 

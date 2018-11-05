@@ -3,7 +3,7 @@ const NOMINAL_THRUST = -0.4;
 class Player {
 
   constructor(sprites) {
-    this.x = g_canvas.width / 2;
+    this.x = g_canvas.width / 6; //Make sure that the player object is closer to the left
     this.y = g_canvas.height / 2;
     this.velY = 0;
     this.sprites = sprites;
@@ -27,6 +27,8 @@ class Player {
     this.applyAccel(thrust, du);
 
     this.handleEdges();
+	
+	spatialManager.register(this);
   }
 
   handleEdges() {

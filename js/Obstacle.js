@@ -14,7 +14,8 @@ class Obstacle {
   update(du) {
     this.x += this.velX * du;
 
-    return this.x + this.width < 0 ? entityManager.KILL_ME_NOW : 1;
+	return this.x + this.width < 0 ? entityManager.KILL_ME_NOW : 1;
+
   }
 
   render(ctx) {
