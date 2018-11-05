@@ -1,8 +1,8 @@
 const main = {
 
-    // "Frame Time" is a (potentially high-precision) frame-clock for animations
-    _frameTime_ms : null,
-    _frameTimeDelta_ms : null,
+  // "Frame Time" is a (potentially high-precision) frame-clock for animations
+  _frameTime_ms : null,
+  _frameTimeDelta_ms : null,
 
 };
 
@@ -56,14 +56,14 @@ main.gameOver = function () {
 //
 var KEY_QUIT = 'Q'.charCodeAt(0);
 function requestedQuit() {
-    return keys[KEY_QUIT];
+  return keys[KEY_QUIT];
 }
 
 // Annoying shim for Firefox and Safari
 window.requestAnimationFrame =
-    window.requestAnimationFrame ||        // Chrome
-    window.mozRequestAnimationFrame ||     // Firefox
-    window.webkitRequestAnimationFrame;    // Safari
+window.requestAnimationFrame ||        // Chrome
+window.mozRequestAnimationFrame ||     // Firefox
+window.webkitRequestAnimationFrame;    // Safari
 
 // This needs to be a "global" function, for the "window" APIs to callback to
 function mainIterFrame(frameTime) {

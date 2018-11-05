@@ -6,7 +6,7 @@ const entityManager = new EntityManager();
 function updateSimulation(du) {
 
   if (Math.random() < 0.01) {
-		entityManager.createRandomObstacle();
+    entityManager.createRandomObstacle();
   }
 
   // random fyrir new power-up

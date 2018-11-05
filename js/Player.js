@@ -1,8 +1,9 @@
 const NOMINAL_THRUST = -0.25;
 
-class Player {
+class Player extends Entity {
 
   constructor(sprites) {
+    super();
     this.x = g_canvas.width / 6; //Make sure that the player object is closer to the left
     this.y = g_canvas.height / 2;
     this.velY = 0;
@@ -14,13 +15,17 @@ class Player {
   }
 
   render(ctx) {
-    if (this.velY !== 0 || this.y < g_canvas.height - this.halfHeight)
+    if (this.velY !== 0 || this.y < g_canvas.height - this.halfHeight) {
       this.sprites.jump.drawCentredAt(ctx, this.x, this.y);
-    else
+    }
+    else {
       this.sprites.stand.drawCentredAt(ctx, this.x, this.y);
+    }
   }
 
   update(du) {
+    spatialManager.unregister(this);
+
     let thrust = this.computeThrust();
 
     thrust += this.gravity;
@@ -28,8 +33,8 @@ class Player {
     this.applyAccel(thrust, du);
 
     this.handleEdges();
-	
-	spatialManager.register(this);
+
+    spatialManager.register(this);
   }
 
   handleEdges() {
