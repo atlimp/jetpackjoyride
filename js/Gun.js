@@ -1,18 +1,18 @@
 class Gun extends PowerUp {
-    constructor(powerUp) {
+    constructor(sprite) {
         super();
         this.gravity = 0.12;
         this.initialGravity = 0.12;
         this.NOMINAL_THRUST = -0.25;
+        this.sprite = sprite;
     }
 
     render(ctx) {
         ctx.save();
-        g_ctx.fillStyle = 'red';
-        util.fillCircle(ctx, this.cx, this.cy, this.radius);
-        //g_ctx.fillStyle = 'black';
+        this.sprite.drawCentredAt(ctx, this.cx, this.cy);
         ctx.restore();
     }
+
 
     update(du) {
         let thrust = this.computeThrust();

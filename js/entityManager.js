@@ -13,11 +13,13 @@ class EntityManager {
 
   
   createGun() {
-    return new Gun();
+    let image = new Sprite(g_images.beer1, 0.25);
+    return new Gun(image);
   }
 
   createBar() {
-    return new Bar();
+    let image = new Sprite(g_images.beer2, 0.25);
+    return new Bar(image);
   }
 
 
