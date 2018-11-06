@@ -12,6 +12,7 @@ class EntityManager {
 
     this.obstacleConstructors = [
       this.createCar,
+      this.createBird,
     ];
   }
 
@@ -26,10 +27,14 @@ class EntityManager {
     const rand = Math.floor(Math.random() * images.length);
 
     return new Car(
-      new Sprite(images[rand]),
       g_canvas.width * 2,
-      g_canvas.height
+      g_canvas.height,
+      new Sprite(images[rand])
     );
+  }
+
+  createBird() {
+    return new Bird(g_canvas.width * 2, g_canvas.height / 2);
   }
 
   createGun() {

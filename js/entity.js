@@ -2,6 +2,7 @@ class Entity {
 
   constructor() {
     this.spatialID = spatialManager.getNewSpatialID();
+    this.isDead = false;
   }
 
   getSpatialID() {
