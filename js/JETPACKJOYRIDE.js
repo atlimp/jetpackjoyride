@@ -33,7 +33,7 @@ const g_images = {};
 function start() {
   entityManager.createPlayer({
     jump: g_images.playerJump,
-    stand: g_images.playerStand  
+    stand: g_images.playerStand
   });
 
   background.setImages([
