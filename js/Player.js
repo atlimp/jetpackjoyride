@@ -11,6 +11,7 @@ class Player extends Entity {
     this.KEY_THRUST = keyCode('W');
     this.gravity = 0.12;
     this.initialGravity = 0.12;
+    this.runCount = 0;
     this.halfHeight = (this.sprites.jump.height * this.sprites.jump.scale) / 2;
   }
 

@@ -33,7 +33,7 @@ const g_images = {};
 function start() {
   entityManager.createPlayer({
     jump: g_images.playerJump,
-    stand: g_images.playerStand,
+    stand: g_images.playerStand  
   });
 
   background.setImages([
@@ -46,7 +46,8 @@ function start() {
 
 async function preload() {
   const requiredImages = {
-    player: '../img/skolaStrakur.png',
+    playerJump: '../img/megamanjump.png',
+    playerStand: '../img/megaman.png',
     street1: '../img/street1.png',
     street2: '../img/street2.png',
     car1: '../img/bill1.png',
