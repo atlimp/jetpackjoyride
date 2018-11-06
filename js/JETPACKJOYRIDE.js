@@ -6,12 +6,12 @@ const background = new Background();
 
 function updateSimulation(du) {
 
-  if (Math.random() < 0.01) {
+  if (Math.random() < 0) {//0.01) {
     entityManager.createRandomObstacle(du);
   }
 
   // random fyrir new power-up
-  if (Math.random() < 0.01) {
+  if (Math.random() < 0.1) {
     entityManager.createRandomPowerUp();
   }
 

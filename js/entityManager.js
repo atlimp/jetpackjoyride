@@ -40,12 +40,12 @@ class EntityManager {
   }
 
   createGun() {
-    let image = new Sprite(g_images.bjor1, 0.25);
+    let image = new Sprite(g_images.bjor1, 0.15);
     return new Gun(image);
   }
 
   createBar() {
-    let image = new Sprite(g_images.bjor2, 0.25);
+    let image = new Sprite(g_images.bjor2, 0.15);
     return new Bar(image);
   }
 

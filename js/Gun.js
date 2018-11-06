@@ -2,63 +2,77 @@ class Gun extends PowerUp {
     constructor(sprite) {
         super();
         this.gravity = 0.12;
-        this.initialGravity = 0.12;
-        this.NOMINAL_THRUST = -0.25;
+        this.NOMINAL_THRUST = -0.15;
         this.sprite = sprite;
+        this.rotation = 0;
+        this.thrust = 0
+        this.freq = util.randRange(0.05, 0.1);
     }
 
     render(ctx) {
         ctx.save();
+        ctx.translate(this.cx, this.cy);
+        ctx.rotate((-this.rotation*Math.PI)/2);
+        ctx.translate(-this.cx, -this.cy);
         this.sprite.drawCentredAt(ctx, this.cx, this.cy);
         ctx.restore();
     }
 
 
     update(du) {
-        let thrust = this.computeThrust();
-        thrust += this.gravity;
-        this.applyAccel(thrust, du);
-        this.handleEdges(); 
+        spatialManager.unregister(this);
+
+        // Snúningur
+        this.rotation += this.freq;
+        this.rotation = this.rotation > 360 ? 0 : this.rotation;
+
+        // Fastur hraði
         this.cx += this.velX * du;
-        return this.cx < -g_canvas.width ? entityManager.KILL_ME_NOW : 1;
+
+        // Thrust þangað til innan við 100 px frá toppi
+        if (this.cy < 100) {
+            this.NOMINAL_THRUST = 0;
+        }
+        else if (this.cy > 200) {
+            this.NOMINAL_THRUST = -0.16;
+        }
+        
+        let thrust = this.gravity + this.NOMINAL_THRUST;
+
+        this.applyAccel(thrust, du);
+
+        // dunno
+        spatialManager.register(this);
+        return this.cx < -g_canvas.width/6 ? entityManager.KILL_ME_NOW : 1;
+        
     }
 
-    handleEdges() {
-        if (this.cy < 0) {
-            this.cy = this.radius;
-            this.velY = 0;
-        }
-        else if (this.cy > g_canvas.height - this.radius) {
-            this.cy = g_canvas.height - this.radius;
-        }
-    }
+    applyAccel(accel, du) {
+        this.velY += accel * du;
 
-    computeThrust() {
-        let thrust = 0;
-        if (Math.random() < 0.2) {
-            thrust += this.NOMINAL_THRUST;
-            this.gravity = 0.0;
-        }
-        else if (Math.random() > 0.8) {
-            this.gravity = this.initialGravity;
-        }
-        return thrust;
-    }
-
-    applyAccel(accelY, du) {
-        this.velY += accelY * du;
         this.cy += this.velY * du;
     }
 
+    // handleEdges() {
+    //     if (this.cy < 0) {
+    //         this.cy = this.radius;
+    //         this.velY = 0;
+    //     }
+    //     else if (this.cy > g_canvas.height - this.radius) {
+    //         this.cy = g_canvas.height - this.radius;
+    //     }
+    // }
 
-    sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
 
-    async powerUpBoolTimer() {
-        await sleep(10000);
-        // timer fyrir byssuna?
-    }
+
+    // sleep(ms) {
+    //     return new Promise(resolve => setTimeout(resolve, ms));
+    // }
+
+    // async powerUpBoolTimer() {
+    //     await sleep(10000);
+    //     // timer fyrir byssuna?
+    // }
     
 
 

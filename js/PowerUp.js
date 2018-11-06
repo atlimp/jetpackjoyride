@@ -1,9 +1,10 @@
-class PowerUp {
+class PowerUp extends Entity {
     constructor(rand) {
+        super();
         // for (var property in descr) {
         //     this[property] = descr[property];
         // }
-        this.yOff = 20;
+        this.yOff = 70;
         this.xOff = 40;
         this.velX = -2;
         this.velY = 0;
