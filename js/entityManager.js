@@ -34,17 +34,18 @@ class EntityManager {
   }
 
   createBird() {
+    const range = util.randRange(70, 120);
     const sprite = new Sprite(g_images.bird);
-    return new Bird(g_canvas.width * 2, g_canvas.height / 2, sprite);
+    return new Bird(g_canvas.width * 2, range, sprite);
   }
 
   createGun() {
-    let image = new Sprite(g_images.beer1, 0.25);
+    let image = new Sprite(g_images.bjor1, 0.25);
     return new Gun(image);
   }
 
   createBar() {
-    let image = new Sprite(g_images.beer2, 0.25);
+    let image = new Sprite(g_images.bjor2, 0.25);
     return new Bar(image);
   }
 

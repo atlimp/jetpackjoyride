@@ -53,8 +53,8 @@ async function preload() {
     car4: '../img/bill4.png',
     bird: '../img/mafur.png',
     boy: '../img/skolaStrakur.png',
-    bjor1: '../einstok.png',
-    bjor2: '../kaldi'
+    bjor1: '../img/einstok.png',
+    bjor2: '../img/kaldi.png'
   };
 
   const keys = Object.keys(requiredImages);

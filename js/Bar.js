@@ -3,7 +3,10 @@ class Bar extends PowerUp {
         super();
         this.velY = 0;
         this.sprite = sprite;
-        this.counter = 0.1;
+        this.angle = 0;
+        this.freq = util.randRange(0.05, 0.1);
+        this.ampl = util.randRange(20, 70);
+        this.originalY = this.cy;
     }
 
     render(ctx) {
@@ -13,7 +16,10 @@ class Bar extends PowerUp {
     }
 
     update(du) {
-
+        this.cy  = Math.sin(this.angle) * this.ampl + this.originalY;
+        this.cx += this.velX;
+        this.angle += this.freq;
+        this.angle = this.angle > Math.PI * 2 ? 0 : this.angle;
     }
 
 
