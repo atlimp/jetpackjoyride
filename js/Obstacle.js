@@ -1,15 +1,16 @@
 class Obstacle extends Entity {
 
-  constructor(sprite) {
+  constructor(sprite, x, y) {
     super();
 
     this.sprite = sprite;
-    this.x = g_canvas.width;
-    this.y = util.randRange(0, g_canvas.height);
+    this.x = x;
+    this.y = y;
 
     this.velX = -2;
 
-    this.halfWidth = 25;
+    this.halfWidth = (this.sprite.width * this.sprite.scale) / 2;
+    this.halfHeight = (this.sprite.height * this.sprite.scale) / 2;
   }
 
   update(du) {

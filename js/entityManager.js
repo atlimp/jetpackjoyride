@@ -9,9 +9,20 @@ class EntityManager {
       this.createGun,
       this.createBar
     ];
+
+    this.obstacleConstructors = [
+      this.createCar,
+    ];
   }
 
-  
+  createCar() {
+    return new Car(
+      new Sprite(g_images.car1),
+      g_canvas.width * 2,
+      g_canvas.height
+    );
+  }
+
   createGun() {
     return new Gun();
   }
@@ -29,14 +40,16 @@ class EntityManager {
   }
 
   createRandomObstacle() {
-    this.obstacles.push(new Zapper());
+    const rand = Math.floor(Math.random() * this.obstacleConstructors.length);
+    const obs = this.obstacleConstructors[rand];
+    this.obstacles.push(obs());
   }
 
   // búa til random powerup
   // func er lokun á random fall í foo
   createRandomPowerUp() {
     if (this.powerups.length <= 2) {
-      let rand = Math.floor(Math.random()*2);
+      let rand = Math.floor(Math.random()*this.foo.length);
       let func = this.foo[rand];
       this.powerups.push(func());
     }
@@ -66,5 +79,3 @@ class EntityManager {
     }
   }
 }
-
-

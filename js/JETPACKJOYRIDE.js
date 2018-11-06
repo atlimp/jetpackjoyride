@@ -49,7 +49,8 @@ async function preload() {
     playerStand: '../img/megaman.png',
     playerJump: '../img/megamanjump.png',
     street1: '../img/street1.png',
-    street2: '../img/street2.png'
+    street2: '../img/street2.png',
+    car1: '../img/bill1.png'
   };
 
   const keys = Object.keys(requiredImages);
