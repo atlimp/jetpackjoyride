@@ -11,8 +11,8 @@ function updateSimulation(du) {
   }
 
   // random fyrir new power-up
-  if (Math.floor(Math.random()*1000) < 200) {
-    entityManager.createPowerUp();
+  if (Math.random() < 0.01) {
+    entityManager.createRandomPowerUp();
   }
 
   background.update(du);

@@ -3,9 +3,23 @@ class EntityManager {
   constructor() {
     this.obstacles = [];
     // powerup fylki
-    this.powerup = [];
+    this.powerups = [];
     this.KILL_ME_NOW = -1;
+    this.foo = [
+      this.createGun,
+      this.createBar
+    ];
   }
+
+  
+  createGun() {
+    return new Gun();
+  }
+
+  createBar() {
+    return new Bar();
+  }
+
 
   createPlayer(images) {
     this.player = new Player({
@@ -18,18 +32,21 @@ class EntityManager {
     this.obstacles.push(new Zapper());
   }
 
-  // búa til powerup
-  createPowerUp() {
-    this.powerup.push(new PowerUp({
-      cx: 50,
-      cy: 50,
-      radius: 3
-    }));
+  // búa til random powerup
+  // func er lokun á random fall í foo
+  createRandomPowerUp() {
+    if (this.powerups.length <= 2) {
+      let rand = Math.floor(Math.random()*2);
+      let func = this.foo[rand];
+      this.powerups.push(func());
+    }
+
   }
 
   render(ctx) {
     this.obstacles.forEach(obstacle => obstacle.render(ctx));
     this.player.render(ctx);
+    this.powerups.forEach(powerup => powerup.render(ctx));
   }
 
   update(du) {
@@ -42,8 +59,12 @@ class EntityManager {
     }
     this.player.update(du);
 
-    for (let i = this.powerup.length - 1; i >= 0; i--) {
-      this.powerup[i].update(du);
+    for (let i = this.powerups.length - 1; i >= 0; i--) {
+      if (this.powerups[i].update(du) === this.KILL_ME_NOW) {
+        this.powerups.splice(i, 1);
+      }
     }
   }
 }
+
+
