@@ -9,9 +9,35 @@ class EntityManager {
       this.createGun,
       this.createBar
     ];
+
+    this.obstacleConstructors = [
+      this.createCar,
+      this.createBird,
+    ];
   }
 
-  
+  createCar() {
+    const images = [
+      g_images.car1,
+      g_images.car2,
+      g_images.car3,
+      g_images.car4,
+    ];
+
+    const rand = Math.floor(Math.random() * images.length);
+
+    return new Car(
+      g_canvas.width * 2,
+      g_canvas.height,
+      new Sprite(images[rand])
+    );
+  }
+
+  createBird() {
+    const sprite = new Sprite(g_images.bird);
+    return new Bird(g_canvas.width * 2, g_canvas.height / 2, sprite);
+  }
+
   createGun() {
     let image = new Sprite(g_images.beer1, 0.25);
     return new Gun(image);
@@ -23,22 +49,28 @@ class EntityManager {
   }
 
 
-  createPlayer(images) {
-    this.player = new Player({
-      jump: new Sprite(images.jump, 0.2),
-      stand: new Sprite(images.stand, 0.2)
-    });
+  createPlayer() {
+    const sprites = {
+      jump: new Sprite(g_images.playerJump, 0.2),
+      stand: new Sprite(g_images.playerStand, 0.2)
+    };
+
+    this.player = new Player(sprites);
   }
 
-  createRandomObstacle() {
-    this.obstacles.push(new Zapper());
+  createRandomObstacle(du) {
+    //if (this.obstacles.length > 4) return;
+
+    const rand = 1;//Math.floor(Math.random() * this.obstacleConstructors.length);
+    const obs = this.obstacleConstructors[rand];
+    this.obstacles.push(obs());
   }
 
   // búa til random powerup
   // func er lokun á random fall í foo
   createRandomPowerUp() {
     if (this.powerups.length <= 2) {
-      let rand = Math.floor(Math.random()*2);
+      let rand = Math.floor(Math.random()*this.foo.length);
       let func = this.foo[rand];
       this.powerups.push(func());
     }
@@ -68,5 +100,3 @@ class EntityManager {
     }
   }
 }
-
-

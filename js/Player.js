@@ -3,15 +3,21 @@ const NOMINAL_THRUST = -0.25;
 class Player extends Entity {
 
   constructor(sprites) {
+    // Call Entity contructor
     super();
+
     this.x = g_canvas.width / 6; //Make sure that the player object is closer to the left
     this.y = g_canvas.height / 2;
     this.velY = 0;
+
     this.sprites = sprites;
+
     this.KEY_THRUST = keyCode('W');
+
     this.gravity = 0.12;
     this.initialGravity = 0.12;
-    this.halfHeight = (this.sprites.jump.height * this.sprites.jump.scale) / 2;
+
+    this.halfHeight = (this.sprites.stand.height * this.sprites.stand.scale) / 2;
   }
 
   render(ctx) {
@@ -33,6 +39,7 @@ class Player extends Entity {
     this.applyAccel(thrust, du);
 
     this.handleEdges();
+
 
     spatialManager.register(this);
   }

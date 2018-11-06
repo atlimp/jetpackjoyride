@@ -25,4 +25,29 @@ class Sprite {
 
     ctx.restore();
   }
+
+  drawSubCentredAt(ctx, cx, cy, subX, subY, subW, subH) {
+    const w = this.width;
+    const h = this.height;
+
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.scale(this.scale, this.scale);
+
+    // drawImage expects "top-left" coords, so we offset our destination
+    // coords accordingly, to draw our sprite centred at the origin
+    ctx.drawImage(
+      this.image,
+      subX,
+      subY,
+      subW,
+      subH,
+      -w / 2,
+      -h / 2,
+      subW,
+      subH
+    );
+
+    ctx.restore();
+  }
 }

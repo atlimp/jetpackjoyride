@@ -1,15 +1,20 @@
 class Obstacle extends Entity {
 
-  constructor(sprite) {
+  constructor(x, y, sprite) {
     super();
 
     this.sprite = sprite;
-    this.x = g_canvas.width;
-    this.y = util.randRange(0, g_canvas.height);
+    this.x = x;
+    this.y = y;
 
     this.velX = -2;
 
-    this.halfWidth = 25;
+    this.halfWidth = this.sprite ? (this.sprite.width * this.sprite.scale) / 2: 25;
+    this.halfHeight = this.sprite ? (this.sprite.height * this.sprite.scale) / 2 : 25;
+  }
+
+  kill() {
+    this.isDead = true;
   }
 
   update(du) {
@@ -17,13 +22,14 @@ class Obstacle extends Entity {
 
     this.x += this.velX * du;
 
-    spatialManager.register(this);
+    if (this.x < -g_canvas.width) this.kill();
+    if (this.isDead) return entityManager.KILL_ME_NOW;
 
-    return this.x < -g_canvas.width ? entityManager.KILL_ME_NOW : 1;
+    spatialManager.register(this);
   }
 
   render(ctx) {
-    util.fillCircle(ctx, this.x, this.y, 50);
+    util.fillCircle(ctx, this.x, this.y, this.halfWidth * 2);
   }
 
 
