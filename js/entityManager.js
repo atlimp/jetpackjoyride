@@ -16,8 +16,17 @@ class EntityManager {
   }
 
   createCar() {
+    const images = [
+      g_images.car1,
+      g_images.car2,
+      g_images.car3,
+      g_images.car4,
+    ];
+
+    const rand = Math.floor(Math.random() * images.length);
+
     return new Car(
-      new Sprite(g_images.car1),
+      new Sprite(images[rand]),
       g_canvas.width * 2,
       g_canvas.height
     );
@@ -39,7 +48,9 @@ class EntityManager {
     });
   }
 
-  createRandomObstacle() {
+  createRandomObstacle(du) {
+    this.obstacles.length > 4) return;
+
     const rand = Math.floor(Math.random() * this.obstacleConstructors.length);
     const obs = this.obstacleConstructors[rand];
     this.obstacles.push(obs());

@@ -5,9 +5,9 @@ const entityManager = new EntityManager();
 const background = new Background();
 
 function updateSimulation(du) {
-
+  
   if (Math.random() < 0.01) {
-    entityManager.createRandomObstacle();
+    entityManager.createRandomObstacle(du);
   }
 
   // random fyrir new power-up
@@ -50,7 +50,10 @@ async function preload() {
     playerJump: '../img/megamanjump.png',
     street1: '../img/street1.png',
     street2: '../img/street2.png',
-    car1: '../img/bill1.png'
+    car1: '../img/bill1.png',
+    car2: '../img/bill2.png',
+    car3: '../img/bill3.png',
+    car4: '../img/bill4.png',
   };
 
   const keys = Object.keys(requiredImages);
