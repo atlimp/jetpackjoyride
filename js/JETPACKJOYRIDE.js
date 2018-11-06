@@ -5,7 +5,7 @@ const entityManager = new EntityManager();
 const background = new Background();
 
 function updateSimulation(du) {
-  
+
   if (Math.random() < 0.01) {
     entityManager.createRandomObstacle(du);
   }
@@ -46,8 +46,7 @@ function start() {
 
 async function preload() {
   const requiredImages = {
-    playerStand: '../img/megaman.png',
-    playerJump: '../img/megamanjump.png',
+    player: '../img/skolaStrakur.png',
     street1: '../img/street1.png',
     street2: '../img/street2.png',
     car1: '../img/bill1.png',
