@@ -17,7 +17,7 @@ class Player extends Entity {
     this.gravity = 0.12;
     this.initialGravity = 0.12;
 
-    this.halfHeight = (this.sprites.jump.height * this.sprites.jump.scale) / 2;
+    this.halfHeight = (this.sprites.stand.height * this.sprites.stand.scale) / 2;
   }
 
   render(ctx) {
@@ -39,6 +39,7 @@ class Player extends Entity {
     this.applyAccel(thrust, du);
 
     this.handleEdges();
+
 
     spatialManager.register(this);
   }

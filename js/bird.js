@@ -9,6 +9,9 @@ class Bird extends Obstacle {
 
     this.velX = -4;
 
+    this.spriteCount = 0;
+    this.maxCount = 8;
+
     this.origY = y;
   }
 
@@ -24,7 +27,28 @@ class Bird extends Obstacle {
     if (this.x < -g_canvas.width) this.kill();
     if (this.isDead) return entityManager.KILL_ME_NOW;
 
+    this.spriteCount++;
+    this.spriteCount %= this.maxCount;
+
     spatialManager.register(this);
+  }
+
+  render(ctx) {
+    const {
+      subX,
+      subY,
+      width,
+      height,
+    } = util.getSubCoordinates(this.sprite, this.spriteCount, 1, 8);
+
+    ctx.save();
+
+    ctx.translate(this.x, this.y);
+    ctx.scale(-1, 1);
+    ctx.translate(-this.x, -this.y);
+    this.sprite.drawSubCentredAt(ctx, this.x, this.y, subX, subY, width, height);
+
+    ctx.restore();
   }
 
 

@@ -85,4 +85,22 @@ const util = {
   fillBox: (ctx, x, y, w, h) => {
     ctx.fillRect(x, y, w, h);
   },
+
+  getSubCoordinates(sprite, spriteCount, rows, cols) {
+    const w = sprite.width;
+    const h = sprite.height;
+
+    const cellWidth = w / cols;
+    const cellHeight = h / rows;
+
+    const cellX = spriteCount % cols;
+    const cellY = Math.floor(spriteCount / cols);
+
+    return {
+      subX: cellX * cellWidth,
+      subY: cellY * cellHeight,
+      width: cellWidth,
+      height: cellHeight
+    };
+  }
 };

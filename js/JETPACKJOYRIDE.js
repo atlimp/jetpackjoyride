@@ -31,10 +31,7 @@ function renderSimulation(ctx) {
 const g_images = {};
 
 function start() {
-  entityManager.createPlayer({
-    jump: g_images.playerJump,
-    stand: g_images.playerStand
-  });
+  entityManager.createPlayer();
 
   background.setImages([
     g_images.street1,
@@ -54,6 +51,8 @@ async function preload() {
     car2: '../img/bill2.png',
     car3: '../img/bill3.png',
     car4: '../img/bill4.png',
+    bird: '../img/mafur.png',
+    boy: '../img/skolaStrakur.png',
   };
 
   const keys = Object.keys(requiredImages);
