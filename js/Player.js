@@ -12,7 +12,10 @@ class Player extends Entity {
 
     this.sprites = sprites;
 
+	//Keys for movement
     this.KEY_THRUST = keyCode('W');
+	this.KEY_LEFT = keyCode('A');
+	this.KEY_RIGHT = keyCode('D');
 
     this.gravity = 0.12;
     this.initialGravity = 0.12;
@@ -37,6 +40,8 @@ class Player extends Entity {
     thrust += this.gravity;
 
     this.applyAccel(thrust, du);
+	
+	this.horizonalMovement();
 
     this.handleEdges();
 
@@ -44,6 +49,11 @@ class Player extends Entity {
     spatialManager.register(this);
   }
 
+  horizonalMovement() {
+	  //Move sprite left or right by 50 to g_canvas.width/3
+	  if(keys[this.KEY_RIGHT] && this.x < g_canvas.width/3) this.x += 5;
+	  if(keys[this.KEY_LEFT] && this.x > 50) this.x -= 5;
+  }
   handleEdges() {
     if (this.y < this.halfHeight) {
       this.y = 0 + this.halfHeight;
