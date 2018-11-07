@@ -50,11 +50,6 @@ class EntityManager {
     return new Bar(image);
   }
 
-  createAchivevement(){
-    this.achievement = new Achievement();
-  }
-
-
   createPlayer() {
     const sprites = {
       jump: new Sprite(g_images.playerJump, 0.2),
@@ -98,7 +93,6 @@ class EntityManager {
 
     }
     this.player.update(du);
-    this.achievement.update();
 
     for (let i = this.powerups.length - 1; i >= 0; i--) {
       if (this.powerups[i].update(du) === this.KILL_ME_NOW) {

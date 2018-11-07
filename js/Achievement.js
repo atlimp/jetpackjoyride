@@ -1,7 +1,6 @@
-class Achievement extends Entity {
+class Achievement  {
   
   constructor() {
-  	super();
 	this.possible = [];
 	this.placeHolder = document.createElement('div')
 	//this.output = document.querySelector('.results');
