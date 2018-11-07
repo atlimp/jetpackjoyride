@@ -14,6 +14,7 @@ class EntityManager {
       this.createCar,
       this.createBird,
     ];
+
   }
 
   createCar() {
@@ -47,6 +48,10 @@ class EntityManager {
   createBar() {
     let image = new Sprite(g_images.bjor2, 0.15);
     return new Bar(image);
+  }
+
+  createAchivevement(){
+    this.achievement = new Achievement();
   }
 
 
@@ -93,6 +98,7 @@ class EntityManager {
 
     }
     this.player.update(du);
+    this.achievement.update();
 
     for (let i = this.powerups.length - 1; i >= 0; i--) {
       if (this.powerups[i].update(du) === this.KILL_ME_NOW) {

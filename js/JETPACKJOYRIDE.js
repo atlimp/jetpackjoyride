@@ -32,6 +32,7 @@ const g_images = {};
 
 function start() {
   entityManager.createPlayer();
+  entityManager.createAchivevement();
 
   background.setImages([
     g_images.street1,
