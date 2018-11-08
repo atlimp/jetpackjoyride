@@ -60,9 +60,9 @@ class EntityManager {
   }
 
   createRandomObstacle(du) {
-    //if (this.obstacles.length > 4) return;
+    if (this.obstacles.length > 4) return;
 
-    const rand = 1;//Math.floor(Math.random() * this.obstacleConstructors.length);
+    const rand = Math.floor(Math.random() * this.obstacleConstructors.length);
     const obs = this.obstacleConstructors[rand];
     this.obstacles.push(obs());
   }

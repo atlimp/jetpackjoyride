@@ -86,7 +86,7 @@ const util = {
     ctx.fillRect(x, y, w, h);
   },
 
-  getSubCoordinates(sprite, spriteCount, rows, cols) {
+  getSubCoordinates: (sprite, spriteCount, rows, cols) => {
     const w = sprite.width;
     const h = sprite.height;
 
@@ -102,5 +102,11 @@ const util = {
       width: cellWidth,
       height: cellHeight
     };
+  },
+
+  playAudio: (url) => {
+    const audio = new Audio();
+    audio.src = url;
+    audio.play();
   }
 };

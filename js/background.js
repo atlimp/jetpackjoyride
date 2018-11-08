@@ -2,7 +2,7 @@ class Background {
 
   constructor() {
     this.xOff = 0;
-    this.xVel = -4;
+    this.xVel = -2;
   }
 
   render(ctx) {
