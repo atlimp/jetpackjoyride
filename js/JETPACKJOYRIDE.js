@@ -46,18 +46,18 @@ function start() {
 
 async function preload() {
   const requiredImages = {
-    playerJump: '../img/megamanjump.png',
-    playerStand: '../img/megaman.png',
-    street1: '../img/street1.png',
-    street2: '../img/street2.png',
-    car1: '../img/bill1.png',
-    car2: '../img/bill2.png',
-    car3: '../img/bill3.png',
-    car4: '../img/bill4.png',
-    bird: '../img/mafur.png',
-    boy: '../img/skolaStrakur.png',
-    bjor1: '../img/einstok.png',
-    bjor2: '../img/kaldi.png'
+    playerJump: 'img/megamanjump.png',
+    playerStand: 'img/megaman.png',
+    street1: 'img/street1.png',
+    street2: 'img/street2.png',
+    car1: 'img/bill1.png',
+    car2: 'img/bill2.png',
+    car3: 'img/bill3.png',
+    car4: 'img/bill4.png',
+    bird: 'img/mafur.png',
+    boy: 'img/skolaStrakur.png',
+    bjor1: 'img/einstok.png',
+    bjor2: 'img/kaldi.png'
   };
 
   const keys = Object.keys(requiredImages);
