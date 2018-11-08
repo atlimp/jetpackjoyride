@@ -4,6 +4,8 @@ const g_ctx = g_canvas.getContext("2d");
 const entityManager = new EntityManager();
 const background = new Background();
 
+const achievement = new Achievement();
+
 function updateSimulation(du) {
 
   if (Math.random() < 1) {//0.01) {
@@ -14,9 +16,10 @@ function updateSimulation(du) {
   if (Math.random() < 0.1) {
     entityManager.createRandomPowerUp();
   }
-
+  achievement.update();
   background.update(du);
   entityManager.update(du);
+
 }
 
 function gatherInputs() {

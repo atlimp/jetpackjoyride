@@ -14,6 +14,7 @@ class EntityManager {
       this.createCar,
       this.createBird,
     ];
+
   }
 
   createCar() {
@@ -48,7 +49,6 @@ class EntityManager {
     let image = new Sprite(g_images.bjor2, 0.15);
     return new Bar(image);
   }
-
 
   createPlayer() {
     const sprites = {
