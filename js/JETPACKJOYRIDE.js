@@ -4,9 +4,11 @@ const g_ctx = g_canvas.getContext("2d");
 const entityManager = new EntityManager();
 const background = new Background();
 
+const achievement = new Achievement();
+
 function updateSimulation(du) {
 
-  if (Math.random() < 0) {//0.01) {
+  if (Math.random() < 1) {//0.01) {
     entityManager.createRandomObstacle(du);
   }
 
@@ -14,9 +16,10 @@ function updateSimulation(du) {
   if (Math.random() < 0.1) {
     entityManager.createRandomPowerUp();
   }
-
+  achievement.update();
   background.update(du);
   entityManager.update(du);
+
 }
 
 function gatherInputs() {
@@ -43,18 +46,18 @@ function start() {
 
 async function preload() {
   const requiredImages = {
-    playerJump: '../img/megamanjump.png',
-    playerStand: '../img/megaman.png',
-    street1: '../img/street1.png',
-    street2: '../img/street2.png',
-    car1: '../img/bill1.png',
-    car2: '../img/bill2.png',
-    car3: '../img/bill3.png',
-    car4: '../img/bill4.png',
-    bird: '../img/mafur.png',
-    boy: '../img/skolaStrakur.png',
-    bjor1: '../img/einstok.png',
-    bjor2: '../img/kaldi.png'
+    playerJump: 'img/megamanjump.png',
+    playerStand: 'img/megaman.png',
+    street1: 'img/street1.png',
+    street2: 'img/street2.png',
+    car1: 'img/bill1.png',
+    car2: 'img/bill2.png',
+    car3: 'img/bill3.png',
+    car4: 'img/bill4.png',
+    bird: 'img/mafur.png',
+    boy: 'img/skolaStrakur.png',
+    bjor1: 'img/einstok.png',
+    bjor2: 'img/kaldi.png'
   };
 
   const keys = Object.keys(requiredImages);
@@ -72,7 +75,3 @@ async function preload() {
 }
 
 preload();
-
-
-
-

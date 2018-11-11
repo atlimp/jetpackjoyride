@@ -14,6 +14,7 @@ class EntityManager {
       this.createCar,
       this.createBird,
     ];
+
   }
 
   createCar() {
@@ -49,7 +50,6 @@ class EntityManager {
     return new Bar(image);
   }
 
-
   createPlayer() {
     const sprites = {
       jump: new Sprite(g_images.playerJump, 0.2),
@@ -60,9 +60,9 @@ class EntityManager {
   }
 
   createRandomObstacle(du) {
-    //if (this.obstacles.length > 4) return;
+    if (this.obstacles.length > 4) return;
 
-    const rand = 1;//Math.floor(Math.random() * this.obstacleConstructors.length);
+    const rand = Math.floor(Math.random() * this.obstacleConstructors.length);
     const obs = this.obstacleConstructors[rand];
     this.obstacles.push(obs());
   }

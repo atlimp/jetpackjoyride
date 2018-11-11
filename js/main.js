@@ -7,7 +7,7 @@ const main = {
 };
 
 // Perform one iteration of the mainloop
-main.iter = function (frameTime) {
+main.iter = function(frameTime) {
 
   // Use the given frameTime to update all of our game-clocks
   this._updateClocks(frameTime);
