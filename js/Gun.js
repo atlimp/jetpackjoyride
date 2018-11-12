@@ -6,7 +6,13 @@ class Gun extends PowerUp {
         this.sprite = sprite;
         this.rotation = 0;
         this.thrust = 0
-        this.freq = util.randRange(0.05, 0.1);
+        this.angle = 0;
+        this.ampl = util.randRange(200,400);
+        this.cy = util.randRange(400,600)
+        this.originalY = this.cy;
+        this.rotation = 0;
+        this.freq = 0.01;
+        this.velX *= 2;
     }
 
     render(ctx) {
@@ -23,45 +29,25 @@ class Gun extends PowerUp {
         spatialManager.unregister(this);
 
         // Snúningur
-        this.rotation += this.freq;
+        this.rotation += 0.1;
         this.rotation = this.rotation > 360 ? 0 : this.rotation;
 
         // Fastur hraði
         this.cx += this.velX * du;
+        this.cy = this.originalY - Math.sin(this.angle) * this.ampl;
 
-        // Thrust þangað til innan við 100 px frá toppi
-        if (this.cy < 100) {
-            this.NOMINAL_THRUST = 0;
-        }
-        else if (this.cy > 200) {
-            this.NOMINAL_THRUST = -0.16;
-        }
-        
-        let thrust = this.gravity + this.NOMINAL_THRUST;
+        this.angle += this.freq;
+        this.angle = this.angle > Math.PI * 2 ? 0 : this.angle;
 
-        this.applyAccel(thrust, du);
+        if (this.x < -g_canvas.width/6) this.kill();
+        if (this.isDead) return entityManager.KILL_ME_NOW;
 
         // dunno
         spatialManager.register(this);
-        return this.cx < -g_canvas.width/6 ? entityManager.KILL_ME_NOW : 1;
         
     }
 
-    applyAccel(accel, du) {
-        this.velY += accel * du;
 
-        this.cy += this.velY * du;
-    }
-
-    // handleEdges() {
-    //     if (this.cy < 0) {
-    //         this.cy = this.radius;
-    //         this.velY = 0;
-    //     }
-    //     else if (this.cy > g_canvas.height - this.radius) {
-    //         this.cy = g_canvas.height - this.radius;
-    //     }
-    // }
 
 
 

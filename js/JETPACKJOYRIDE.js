@@ -8,12 +8,12 @@ const achievement = new Achievement();
 
 function updateSimulation(du) {
 
-  if (Math.random() < 1) {//0.01) {
+  if (Math.random() < 0.01) {
     entityManager.createRandomObstacle(du);
   }
 
   // random fyrir new power-up
-  if (Math.random() < 0.1) {
+  if (Math.random() < 0.01) {
     entityManager.createRandomPowerUp();
   }
   achievement.update();
@@ -57,7 +57,8 @@ async function preload() {
     bird: 'img/mafur.png',
     boy: 'img/skolaStrakur.png',
     bjor1: 'img/einstok.png',
-    bjor2: 'img/kaldi.png'
+    bjor2: 'img/kaldi.png',
+    gasoline: 'img/gasoline.png'
   };
 
   const keys = Object.keys(requiredImages);

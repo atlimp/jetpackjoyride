@@ -4,7 +4,7 @@ class PowerUp extends Entity {
         // for (var property in descr) {
         //     this[property] = descr[property];
         // }
-        this.yOff = 70;
+        this.yOff = 80;
         this.xOff = 40;
         this.velX = -2;
         this.velY = 0;
@@ -18,6 +18,10 @@ class PowerUp extends Entity {
 
         
     }
+
+    kill() {
+        this.isDead = true;
+      }
 
     render(ctx) {
         ctx.save();
@@ -42,23 +46,5 @@ class PowerUp extends Entity {
 
 }
 
-/*
-const powerUp = new PowerUp({
-    cx: g_canvas.width,
-    cy: 0,
-    radius: 3,
 
-    xVel: 0,
-    yVel: 3
-})
-*/
-
-/*
-  if (g_paddle.collidesWith(prevX, prevY, nextX, nextY, this.radius)) {
-    g_powerUpBool = false;
-    g_paddle.gunBool = true;
-    powerUpBoolTimer();
-  }+
-
-*/
 

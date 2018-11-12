@@ -5,9 +5,10 @@ class EntityManager {
     // powerup fylki
     this.powerups = [];
     this.KILL_ME_NOW = -1;
-    this.foo = [
+    this.powerupsFunc = [
       this.createGun,
-      this.createBar
+      this.createBar,
+      this.createFillTank
     ];
 
     this.obstacleConstructors = [
@@ -38,6 +39,11 @@ class EntityManager {
     const range = util.randRange(70, 120);
     const sprite = new Sprite(g_images.bird);
     return new Bird(g_canvas.width * 2, range, sprite);
+  }
+
+  createFillTank() {
+    let image = new Sprite(g_images.gasoline, 0.15);
+    return new FillTank(image);
   }
 
   createGun() {
@@ -71,8 +77,8 @@ class EntityManager {
   // func er lokun á random fall í foo
   createRandomPowerUp() {
     if (this.powerups.length <= 2) {
-      let rand = Math.floor(Math.random()*this.foo.length);
-      let func = this.foo[rand];
+      let rand = Math.floor(Math.random()*this.powerupsFunc.length);
+      let func = this.powerupsFunc[rand];
       this.powerups.push(func());
     }
 

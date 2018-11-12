@@ -47,7 +47,6 @@ class Player extends Entity {
   }
 
   update(du) {
-    console.log(this.jetPackLifeTime);
     spatialManager.unregister(this);
 
     let thrust = this.computeThrust(du);
