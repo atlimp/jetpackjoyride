@@ -13,7 +13,7 @@ function updateSimulation(du) {
   }
 
   // random fyrir new power-up
-  if (Math.random() < 0.01) {
+  if (Math.floor(Math.random() * 10000) < 20) {
     entityManager.createRandomPowerUp();
   }
   achievement.update();

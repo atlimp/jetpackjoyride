@@ -29,7 +29,7 @@ class Bar extends PowerUp {
         // Flöskurnar svífa upp og niður en nálgast botninn
         this.originalY += 0.3;
 
-        if (this.x < -g_canvas.width/6) this.kill();
+        if (this.cx < -g_canvas.width/6) this.kill();
         if (this.isDead) return entityManager.KILL_ME_NOW;
 
         // dunno
