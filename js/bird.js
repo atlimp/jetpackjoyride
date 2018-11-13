@@ -7,7 +7,7 @@ class Bird extends Obstacle {
     this.freq = util.randRange(0.05, 0.1);
     this.ampl = util.randRange(20, 70);
 
-    this.flappingFreq = 1 / util.map(this.freq, 0.05, 0.1, 1, 6);
+    this.flappingFreq = util.map(this.freq, 0.05, 0.1, 0.1, 0.8);
 
     this.velX = -4;
 

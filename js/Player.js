@@ -49,11 +49,35 @@ class Player extends Entity {
       this.sprites.stand.drawCentredAt(ctx, this.x, this.y);
     }
 
+    this.drawFuel(ctx);
+    this.drawNumBullets(ctx);
+
+  }
+
+  drawFuel(ctx) {
     ctx.save();
-    ctx.fillStyle = '#ffff00';
+    ctx.drawImage(g_images.gasoline, 10, 20, 20, 30);
+
     const fuelWidth = util.map(this.jetPackLifeTime, 0, this.maxJetpackLifeTime, 0, 200)
-    util.fillBox(ctx, 10, 10, fuelWidth, 20);
-    ctx.restore()
+
+    const gradient = ctx.createLinearGradient(10, 20, 210, 20);
+
+    gradient.addColorStop(0.0, '#ffffff');
+    gradient.addColorStop(0.2, '#ffff00');
+    gradient.addColorStop(1.0, '#aa0000');
+
+    ctx.fillStyle = gradient;
+
+    util.fillBox(ctx, 40, 20, fuelWidth, 30);
+    ctx.restore();
+  }
+
+  drawNumBullets(ctx) {
+    ctx.save();
+    ctx.drawImage(g_images.bullet, 10, 55, 20, 30);
+    ctx.font = '30px sans-serif';
+    ctx.fillText(this.numBullets, 40, 85);
+    ctx.restore();
   }
 
   update(du) {
