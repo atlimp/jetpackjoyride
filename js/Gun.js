@@ -26,6 +26,8 @@ class Gun extends PowerUp {
     update(du) {
         spatialManager.unregister(this);
 
+        if (this.isDead) return entityManager.KILL_ME_NOW;
+        
         // Fastur hraði
         this.cx += this.velX * du;
         this.cy = this.originalY - Math.sin(this.angle) * this.ampl;
@@ -34,7 +36,6 @@ class Gun extends PowerUp {
         this.angle = this.angle > Math.PI * 2 ? 0 : this.angle;
 
         if (this.cx < -g_canvas.width/6) this.kill();
-        if (this.isDead) return entityManager.KILL_ME_NOW;
 
         // dunno
         spatialManager.register(this);

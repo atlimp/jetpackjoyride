@@ -19,6 +19,9 @@ class Bar extends PowerUp {
 
     update(du) {
         spatialManager.unregister(this);
+        
+        if (this.isDead) return entityManager.KILL_ME_NOW;
+
         this.cy = Math.sin(this.angle) * this.ampl + this.originalY;
         this.cx += this.velX * du;
 
@@ -29,7 +32,6 @@ class Bar extends PowerUp {
         this.originalY += 0.3;
 
         if (this.cx < -g_canvas.width/6) this.kill();
-        if (this.isDead) return entityManager.KILL_ME_NOW;
 
         // dunno
         spatialManager.register(this);

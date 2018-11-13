@@ -26,6 +26,9 @@ class PowerUp extends Entity {
     }
 
     update(du) {
+        spatialManager.unregister(this);
+
+        if (this.isDead) return entityManager.KILL_ME_NOW;
 
         let nextX = this.cx + this.velX * du;
         let nextY = this.cy + this.yVel * du;
@@ -33,7 +36,10 @@ class PowerUp extends Entity {
         this.cy += this.velY * du;
         this.cx += this.velX * du;
 
-        return this.cx < -g_canvas.width ? entityManager.KILL_ME_NOW : 1;
+        if (this.cx < -g_canvas.width/6) this.kill();
+
+        // dunno
+        spatialManager.register(this);
     }
 
     getPos() {

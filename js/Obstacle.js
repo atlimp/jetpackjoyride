@@ -16,10 +16,11 @@ class Obstacle extends Entity {
   update(du) {
     spatialManager.unregister(this);
 
+    if (this.isDead) return entityManager.KILL_ME_NOW;
+
     this.x += this.velX * du;
 
     if (this.x < -g_canvas.width) this.kill();
-    if (this.isDead) return entityManager.KILL_ME_NOW;
 
     spatialManager.register(this);
   }
@@ -34,5 +35,9 @@ class Obstacle extends Entity {
 
   getDimensions() {
     return { halfWidth: this.halfWidth, halfHeight: this.halfHeight };
+  }
+
+  takeBulletHit() {
+    this.kill();
   }
 }

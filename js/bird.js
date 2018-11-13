@@ -20,6 +20,8 @@ class Bird extends Obstacle {
   update(du) {
     spatialManager.unregister(this);
 
+    if (this.isDead) return entityManager.KILL_ME_NOW;
+    
     this.x += this.velX * du;
     this.y  = Math.sin(this.angle) * this.ampl + this.origY;
 
@@ -27,7 +29,6 @@ class Bird extends Obstacle {
     this.angle = this.angle > Math.PI * 2 ? 0 : this.angle;
 
     if (this.x < -g_canvas.width) this.kill();
-    if (this.isDead) return entityManager.KILL_ME_NOW;
 
     this.spriteCount++;
     this.spriteCount %= this.maxCount;
