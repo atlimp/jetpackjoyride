@@ -18,8 +18,8 @@ class Player extends Entity {
     this.powerup = new Gun();
     */
 
-    // Á að vera false;
-    this.hasGun = true;
+    this.maxNumBullets = 10;
+    this.numBullets = this.maxNumBullets;
 
     //Keys for movement
     this.KEY_USE = keyCode('F');
@@ -32,7 +32,7 @@ class Player extends Entity {
     this.gravity = 0.12;
     this.initialGravity = 0.12;
 
-    this.maxJetpackLifeTime = 100000;
+    this.maxJetpackLifeTime = 1000;
     this.jetPackLifeTime = this.maxJetpackLifeTime;
     this.isJumping = true;
 
@@ -51,14 +51,17 @@ class Player extends Entity {
 
     ctx.save();
     ctx.fillStyle = '#ffff00';
-    util.fillBox(ctx, 10, 10, this.jetPackLifeTime * 2, 20);
+    const fuelWidth = util.map(this.jetPackLifeTime, 0, this.maxJetpackLifeTime, 0, 200)
+    util.fillBox(ctx, 10, 10, fuelWidth, 20);
     ctx.restore()
   }
 
   update(du) {
     spatialManager.unregister(this);
 
-    if (this.isDead) console.log('dead');
+    if (this.isDead) {
+      console.log('Dead');
+    }
 
     let thrust = this.computeThrust(du);
 
@@ -76,9 +79,17 @@ class Player extends Entity {
       this.jetPackLifeTime += du;
     }
 
-    if (this.hasGun && keys[this.KEY_USE]) {
+    if (this.numBullets > 0 && eatKey(this.KEY_USE)) {
+      this.numBullets--;
       entityManager.createBullet(this.x, this.y);
     }
+
+    this.checkForCollission()
+
+    spatialManager.register(this);
+  }
+
+  checkForCollission() {
 
     const hit = spatialManager.findEntityInRange({
       x: this.x,
@@ -89,11 +100,25 @@ class Player extends Entity {
 
     if (hit) {
       const which = Object.getPrototypeOf(hit.constructor).name;
-
       if (which === 'Obstacle') this.kill();
-    }
+      else {
+        const powerup = hit.constructor.name;
 
-    spatialManager.register(this);
+        switch (powerup) {
+          case 'FillTank':
+          this.jetPackLifeTime = this.maxJetpackLifeTime;
+          hit.consume();
+          break;
+          case 'Gun':
+          this.numBullets = this.maxNumBullets;
+          hit.consume();
+          break;
+          case 'Bar':
+          // Gera eitthvað
+          hit.consume();
+        }
+      }
+    }
   }
 
   horizonalMovement() {

@@ -108,5 +108,9 @@ const util = {
     const audio = new Audio();
     audio.src = url;
     audio.play();
+  },
+
+  map: function(x, a, b, c, d) {
+    return (x-a)/(b-a)*(d-c) + c;
   }
 };

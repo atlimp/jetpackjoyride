@@ -49,4 +49,12 @@ class PowerUp extends Entity {
     getDimensions() {
       return { halfWidth: this.halfWidth, halfHeight: this.halfHeight };
     }
+
+    consume() {
+      this.kill();
+    }
+
+    takeBulletHit() {
+      this.kill();
+    }
 }
