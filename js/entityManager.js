@@ -43,7 +43,8 @@ class EntityManager {
   }
 
   createBullet(playerX, playerY) {
-    this.bullets.push(new PlayerBullet(playerX, playerY))
+    const sprite = new Sprite(g_images.bullet, 0.15);
+    this.bullets.push(new PlayerBullet(sprite, playerX, playerY))
   }
 
   createFillTank() {
@@ -119,7 +120,7 @@ class EntityManager {
       if (this.bullets[i].update(du) === this.KILL_ME_NOW) {
         this.bullets.splice(i, 1);
       }
-      
+
     }
 
   }

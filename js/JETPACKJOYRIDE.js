@@ -58,7 +58,8 @@ async function preload() {
     boy: 'img/skolaStrakur.png',
     bjor1: 'img/einstok.png',
     bjor2: 'img/kaldi.png',
-    gasoline: 'img/gasoline.png'
+    gasoline: 'img/gasoline.png',
+    bullet: 'img/bullet.png'
   };
 
   const keys = Object.keys(requiredImages);
