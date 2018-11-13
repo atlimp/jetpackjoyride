@@ -112,5 +112,14 @@ const util = {
 
   map: function(x, a, b, c, d) {
     return (x-a)/(b-a)*(d-c) + c;
+  },
+
+  drawImage(ctx, image, x, y, scale) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.scale(scale, scale);
+    ctx.translate(-x, -y);
+    ctx.drawImage(image, x, y);
+    ctx.restore();
   }
 };

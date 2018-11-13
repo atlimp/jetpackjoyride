@@ -32,7 +32,7 @@ class Player extends Entity {
     this.gravity = 0.12;
     this.initialGravity = 0.12;
 
-    this.maxJetpackLifeTime = 1000;
+    this.maxJetpackLifeTime = 100;
     this.jetPackLifeTime = this.maxJetpackLifeTime;
     this.isJumping = true;
 
@@ -56,7 +56,7 @@ class Player extends Entity {
 
   drawFuel(ctx) {
     ctx.save();
-    ctx.drawImage(g_images.gasoline, 10, 20, 20, 30);
+    util.drawImage(ctx, g_images.gasoline, 10, 20, 0.1);
 
     const fuelWidth = util.map(this.jetPackLifeTime, 0, this.maxJetpackLifeTime, 0, 200)
 
@@ -74,7 +74,8 @@ class Player extends Entity {
 
   drawNumBullets(ctx) {
     ctx.save();
-    ctx.drawImage(g_images.bullet, 10, 55, 20, 30);
+    util.drawImage(ctx, g_images.bullet, 10, 55, 0.2);
+    ctx.fillStyle = '#000000';
     ctx.font = '30px sans-serif';
     ctx.fillText(this.numBullets, 40, 85);
     ctx.restore();

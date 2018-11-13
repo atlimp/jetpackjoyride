@@ -2,7 +2,9 @@ const g_canvas = document.getElementById("myCanvas");
 const g_ctx = g_canvas.getContext("2d");
 
 const entityManager = new EntityManager();
-const background = new Background();
+const background1 = new Background(-1);
+const background2 = new Background(-2);
+
 
 const achievement = new Achievement();
 
@@ -22,7 +24,8 @@ function updateSimulation(du) {
     entityManager.createRandomPowerUp();
   }
   achievement.update();
-  background.update(du);
+  background1.update(du);
+  background2.update(du);
   entityManager.update(du);
 }
 
@@ -31,7 +34,8 @@ function gatherInputs() {
 }
 
 function renderSimulation(ctx) {
-  background.render(ctx);
+  background1.render(ctx);
+  background2.render(ctx);
   entityManager.render(ctx);
 
   if (USE_SPATIAL) spatialManager.render(ctx);
@@ -42,9 +46,19 @@ const g_images = {};
 function start() {
   entityManager.createPlayer();
 
-  background.setImages([
-    g_images.street1,
-    g_images.street2
+  background1.setImages([
+    g_images.mountain,
+  ]);
+
+  background2.setImages([
+    g_images.backtrans1,
+    g_images.backtrans2,
+    g_images.backtrans3,
+    g_images.backtrans4,
+    // g_images.background1,
+    // g_images.background2,
+    // g_images.background3,
+    // g_images.background4,
   ]);
 
   main.init();
@@ -54,12 +68,19 @@ async function preload() {
   const requiredImages = {
     playerJump: 'img/megamanjump.png',
     playerStand: 'img/megaman.png',
-    street1: 'img/street1.png',
-    street2: 'img/street2.png',
-    car1: 'img/bill1.png',
-    car2: 'img/bill2.png',
-    car3: 'img/bill3.png',
-    car4: 'img/bill4.png',
+    background1: 'img/background/background1.png',
+    background2: 'img/background/background2.png',
+    background3: 'img/background/background3.png',
+    background4: 'img/background/background4.png',
+    backtrans1: 'img/background/backtrans1.png',
+    backtrans2: 'img/background/backtrans2.png',
+    backtrans3: 'img/background/backtrans3.png',
+    backtrans4: 'img/background/backtrans4.png',
+    mountain: '../img/background/mountain.jpg',
+    car1: 'img/car/bill1.png',
+    car2: 'img/car/bill2.png',
+    car3: 'img/car/bill3.png',
+    car4: 'img/car/bill4.png',
     bird: 'img/mafur.png',
     boy: 'img/skolaStrakur.png',
     bjor1: 'img/einstok.png',

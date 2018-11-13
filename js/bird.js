@@ -14,6 +14,7 @@ class Bird extends Obstacle {
 
     this.spriteCount = 0;
     this.maxCount = 8;
+
     this.halfWidth = (this.sprite.width * this.sprite.scale) / (2 * this.maxCount);
 
     this.origY = y;
@@ -55,6 +56,4 @@ class Bird extends Obstacle {
 
     ctx.restore();
   }
-
-
 }
