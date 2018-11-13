@@ -12,15 +12,22 @@ class Player extends Entity {
 
     this.sprites = sprites;
 
+    /* Þetta á ekki að vera hér?
     this.powerup = null;
 
     this.powerup = new Gun();
+    */
+
+    // Á að vera false;
+    this.hasGun = true;
 
     //Keys for movement
+    this.KEY_USE = keyCode('F');
     this.KEY_THRUST = keyCode('W');
     this.KEY_JUMP = keyCode(' ');
     this.KEY_LEFT = keyCode('A');
     this.KEY_RIGHT = keyCode('D');
+    
 
     this.gravity = 0.12;
     this.initialGravity = 0.12;
@@ -63,6 +70,10 @@ class Player extends Entity {
 
     if (!this.isJumping && this.jetPackLifeTime < this.maxJetpackLifeTime) {
       this.jetPackLifeTime += du;
+    }
+
+    if (this.hasGun && keys[this.KEY_USE]) {
+      entityManager.createBullet(this.x, this.y);
     }
 
     spatialManager.register(this);

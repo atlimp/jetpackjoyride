@@ -4,6 +4,7 @@ class EntityManager {
     this.obstacles = [];
     // powerup fylki
     this.powerups = [];
+    this.bullets = [];
     this.KILL_ME_NOW = -1;
     this.powerupsFunc = [
       this.createGun,
@@ -41,6 +42,10 @@ class EntityManager {
     return new Bird(g_canvas.width * 2, range, sprite);
   }
 
+  createBullet(playerX, playerY) {
+    this.bullets.push(new PlayerBullet(playerX, playerY))
+  }
+
   createFillTank() {
     let image = new Sprite(g_images.gasoline, 0.15);
     return new FillTank(image);
@@ -74,7 +79,7 @@ class EntityManager {
   }
 
   // búa til random powerup
-  // func er lokun á random fall í foo
+  // func er lokun á random fall í powerupsFunc
   createRandomPowerUp() {
     if (this.powerups.length <= 2) {
       let rand = Math.floor(Math.random()*this.powerupsFunc.length);
@@ -88,6 +93,7 @@ class EntityManager {
     this.obstacles.forEach(obstacle => obstacle.render(ctx));
     this.player.render(ctx);
     this.powerups.forEach(powerup => powerup.render(ctx));
+    this.bullets.forEach(bullet => bullet.render(ctx));
   }
 
   update(du) {
@@ -101,9 +107,20 @@ class EntityManager {
     this.player.update(du);
 
     for (let i = this.powerups.length - 1; i >= 0; i--) {
+
       if (this.powerups[i].update(du) === this.KILL_ME_NOW) {
         this.powerups.splice(i, 1);
       }
+
     }
+
+    for (let i = this.bullets.length - 1; i >= 0; i--) {
+
+      if (this.bullets[i].update(du) === this.KILL_ME_NOW) {
+        this.bullets.splice(i, 1);
+      }
+      
+    }
+
   }
 }
