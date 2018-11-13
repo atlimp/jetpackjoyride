@@ -7,6 +7,8 @@ class Bird extends Obstacle {
     this.freq = util.randRange(0.05, 0.1);
     this.ampl = util.randRange(20, 70);
 
+    this.flappingFreq = 1 / util.map(this.freq, 0.05, 0.1, 1, 6);
+
     this.velX = -4;
 
 
@@ -21,7 +23,7 @@ class Bird extends Obstacle {
     spatialManager.unregister(this);
 
     if (this.isDead) return entityManager.KILL_ME_NOW;
-    
+
     this.x += this.velX * du;
     this.y  = Math.sin(this.angle) * this.ampl + this.origY;
 
@@ -30,7 +32,7 @@ class Bird extends Obstacle {
 
     if (this.x < -g_canvas.width) this.kill();
 
-    this.spriteCount++;
+    this.spriteCount += this.flappingFreq;
     this.spriteCount %= this.maxCount;
 
     spatialManager.register(this);
@@ -42,7 +44,7 @@ class Bird extends Obstacle {
       subY,
       width,
       height,
-    } = util.getSubCoordinates(this.sprite, this.spriteCount, 1, 8);
+    } = util.getSubCoordinates(this.sprite, Math.floor(this.spriteCount), 1, 8);
 
     ctx.save();
 

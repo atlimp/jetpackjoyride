@@ -6,7 +6,12 @@ const background = new Background();
 
 const achievement = new Achievement();
 
+const TOGGLE_SPATIAL = keyCode('0');
+let USE_SPATIAL = false;
+
 function updateSimulation(du) {
+
+  if (eatKey(TOGGLE_SPATIAL)) USE_SPATIAL = !USE_SPATIAL;
 
   if (Math.random() < 0.01) {
     entityManager.createRandomObstacle(du);
@@ -19,7 +24,6 @@ function updateSimulation(du) {
   achievement.update();
   background.update(du);
   entityManager.update(du);
-
 }
 
 function gatherInputs() {
@@ -29,7 +33,8 @@ function gatherInputs() {
 function renderSimulation(ctx) {
   background.render(ctx);
   entityManager.render(ctx);
-  spatialManager.render(ctx);
+
+  if (USE_SPATIAL) spatialManager.render(ctx);
 }
 
 const g_images = {};
