@@ -1,10 +1,8 @@
 class Gun extends PowerUp {
     constructor(sprite) {
-        super();
+        super(sprite);
         this.gravity = 0.12;
         this.NOMINAL_THRUST = -0.15;
-        this.sprite = sprite;
-        this.rotation = 0;
         this.thrust = 0
         this.angle = 0;
         this.ampl = util.randRange(200,400);
@@ -28,10 +26,6 @@ class Gun extends PowerUp {
     update(du) {
         spatialManager.unregister(this);
 
-        // Snúningur
-        this.rotation += 0.1;
-        this.rotation = this.rotation > 360 ? 0 : this.rotation;
-
         // Fastur hraði
         this.cx += this.velX * du;
         this.cy = this.originalY - Math.sin(this.angle) * this.ampl;
@@ -44,7 +38,7 @@ class Gun extends PowerUp {
 
         // dunno
         spatialManager.register(this);
-        
+
     }
 
 
@@ -59,7 +53,7 @@ class Gun extends PowerUp {
     //     await sleep(10000);
     //     // timer fyrir byssuna?
     // }
-    
+
 
 
 

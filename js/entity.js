@@ -8,4 +8,12 @@ class Entity {
   getSpatialID() {
     return this.spatialID;
   }
+
+  getType() {
+    return this.type || 'rect';
+  }
+
+  kill() {
+      this.isDead = true;
+  }
 }

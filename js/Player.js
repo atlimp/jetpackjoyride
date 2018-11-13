@@ -27,16 +27,18 @@ class Player extends Entity {
     this.KEY_JUMP = keyCode(' ');
     this.KEY_LEFT = keyCode('A');
     this.KEY_RIGHT = keyCode('D');
-    
+
 
     this.gravity = 0.12;
     this.initialGravity = 0.12;
 
-    this.maxJetpackLifeTime = 100;
+    this.maxJetpackLifeTime = 100000;
     this.jetPackLifeTime = this.maxJetpackLifeTime;
     this.isJumping = true;
 
+    this.halfWidth = (this.sprites.stand.width * this.sprites.stand.scale) / 2;
     this.halfHeight = (this.sprites.stand.height * this.sprites.stand.scale) / 2;
+
   }
 
   render(ctx) {
@@ -56,6 +58,8 @@ class Player extends Entity {
   update(du) {
     spatialManager.unregister(this);
 
+    if (this.isDead) console.log('dead');
+
     let thrust = this.computeThrust(du);
 
     thrust += this.gravity;
@@ -74,6 +78,19 @@ class Player extends Entity {
 
     if (this.hasGun && keys[this.KEY_USE]) {
       entityManager.createBullet(this.x, this.y);
+    }
+
+    const hit = spatialManager.findEntityInRange({
+      x: this.x,
+      y: this.y,
+      halfWidth: this.halfWidth,
+      halfHeight: this.halfHeight
+    });
+
+    if (hit) {
+      const which = Object.getPrototypeOf(hit.constructor).name;
+
+      if (which === 'Obstacle') this.kill();
     }
 
     spatialManager.register(this);
@@ -117,6 +134,14 @@ class Player extends Entity {
     let avgVelY = (oldVelY + this.velY) / 2;
 
     this.y += avgVelY * du;
+  }
+
+  getPos() {
+    return { x: this.x, y: this.y };
+  }
+
+  getDimensions() {
+    return { halfWidth: this.halfWidth, halfHeight: this.halfHeight };
   }
 
 }

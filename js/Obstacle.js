@@ -13,10 +13,6 @@ class Obstacle extends Entity {
     this.halfHeight = this.sprite ? (this.sprite.height * this.sprite.scale) / 2 : 25;
   }
 
-  kill() {
-    this.isDead = true;
-  }
-
   update(du) {
     spatialManager.unregister(this);
 
@@ -32,5 +28,11 @@ class Obstacle extends Entity {
     util.fillCircle(ctx, this.x, this.y, this.halfWidth * 2);
   }
 
+  getPos() {
+    return { x: this.x, y: this.y };
+  }
 
+  getDimensions() {
+    return { halfWidth: this.halfWidth, halfHeight: this.halfHeight };
+  }
 }

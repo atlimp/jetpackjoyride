@@ -1,8 +1,7 @@
 class Bar extends PowerUp {
     constructor(sprite) {
-        super();
+        super(sprite);
         this.velY = 0;
-        this.sprite = sprite;
         this.angle = 0;
         this.freq = util.randRange(0.05, 0.1);
         this.ampl = util.randRange(20, 70);

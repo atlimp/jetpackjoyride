@@ -27,9 +27,6 @@ class Sprite {
   }
 
   drawSubCentredAt(ctx, cx, cy, subX, subY, subW, subH) {
-    const w = this.width;
-    const h = this.height;
-
     ctx.save();
     ctx.translate(cx, cy);
     ctx.scale(this.scale, this.scale);
@@ -42,8 +39,8 @@ class Sprite {
       subY,
       subW,
       subH,
-      -w / 2,
-      -h / 2,
+      -subW / 2,
+      -subH / 2,
       subW,
       subH
     );

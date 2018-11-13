@@ -29,6 +29,7 @@ function gatherInputs() {
 function renderSimulation(ctx) {
   background.render(ctx);
   entityManager.render(ctx);
+  spatialManager.render(ctx);
 }
 
 const g_images = {};

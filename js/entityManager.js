@@ -38,7 +38,7 @@ class EntityManager {
 
   createBird() {
     const range = util.randRange(70, 120);
-    const sprite = new Sprite(g_images.bird);
+    const sprite = new Sprite(g_images.bird, 0.8);
     return new Bird(g_canvas.width * 2, range, sprite);
   }
 

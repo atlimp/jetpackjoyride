@@ -1,9 +1,7 @@
 class PowerUp extends Entity {
-    constructor(rand) {
+    constructor(sprite) {
         super();
-        // for (var property in descr) {
-        //     this[property] = descr[property];
-        // }
+        this.sprite = sprite;
         this.yOff = 80;
         this.xOff = 40;
         this.velX = -2;
@@ -11,17 +9,14 @@ class PowerUp extends Entity {
         this.radius = 15;
         this.cx = g_canvas.width + this.xOff;
         this.cy = util.randRange(
-            0 + this.yOff, 
+            0 + this.yOff,
             g_canvas.height - this.yOff
         );
-        
 
-        
+        this.halfWidth = this.sprite ? (this.sprite.width * this.sprite.scale) / 2: 25;
+        this.halfHeight = this.sprite ? (this.sprite.height * this.sprite.scale) / 2 : 25;
+
     }
-
-    kill() {
-        this.isDead = true;
-      }
 
     render(ctx) {
         ctx.save();
@@ -31,20 +26,21 @@ class PowerUp extends Entity {
     }
 
     update(du) {
-        
+
         let nextX = this.cx + this.velX * du;
         let nextY = this.cy + this.yVel * du;
-        
+
         this.cy += this.velY * du;
         this.cx += this.velX * du;
 
         return this.cx < -g_canvas.width ? entityManager.KILL_ME_NOW : 1;
     }
 
-    
+    getPos() {
+      return { x: this.cx, y: this.cy };
+    }
 
-
+    getDimensions() {
+      return { halfWidth: this.halfWidth, halfHeight: this.halfHeight };
+    }
 }
-
-
-

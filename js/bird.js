@@ -9,8 +9,10 @@ class Bird extends Obstacle {
 
     this.velX = -4;
 
+
     this.spriteCount = 0;
     this.maxCount = 8;
+    this.halfWidth = (this.sprite.width * this.sprite.scale) / (2 * this.maxCount);
 
     this.origY = y;
   }
