@@ -84,6 +84,7 @@ async function preload() {
     car3: 'img/car/bill3.png',
     car4: 'img/car/bill4.png',
     bird: 'img/bird/bird.png',
+    rocket: 'img/rocket.png',
     bjor1: 'img/beer/einstok.png',
     bjor2: 'img/beer/kaldi.png',
     bullet: 'img/bullet/bullet.png',

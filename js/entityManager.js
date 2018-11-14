@@ -15,6 +15,7 @@ class EntityManager {
     this.obstacleConstructors = [
       this.createCar,
       this.createBird,
+      this.createRocket,
     ];
 
   }
@@ -51,6 +52,11 @@ class EntityManager {
   createFillTank() {
     let image = new Sprite(g_images.gasoline, 0.15);
     return new FillTank(image);
+  }
+
+  createRocket() {
+    let sprite = new Sprite(g_images.rocket, 0.1);
+    return new Rocket(g_canvas.width + 100, g_canvas.height / 2, sprite);
   }
 
   createGun() {
@@ -124,6 +130,10 @@ class EntityManager {
       }
 
     }
+  }
+
+  getPlayerPos() {
+    return this.player.getPos();
   }
 
   setSpeedMult(val) {
