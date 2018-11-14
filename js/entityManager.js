@@ -66,7 +66,8 @@ class EntityManager {
   createPlayer() {
     const sprites = {
       jump: new Sprite(g_images.playerJump, 0.2),
-      stand: new Sprite(g_images.playerStand, 0.2)
+      stand: new Sprite(g_images.playerStand, 0.2),
+      car: new Sprite(g_images.car1),
     };
 
     this.player = new Player(sprites);

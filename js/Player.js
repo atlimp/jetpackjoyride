@@ -36,17 +36,47 @@ class Player extends Entity {
     this.jetPackLifeTime = this.maxJetpackLifeTime;
     this.isJumping = true;
 
-    this.halfWidth = (this.sprites.stand.width * this.sprites.stand.scale) / 2;
-    this.halfHeight = (this.sprites.stand.height * this.sprites.stand.scale) / 2;
+    this.maxCarLifetime = 500;
+    this.carLifetime = 0;
+
+    this.calcDimensions();
 
   }
 
-  render(ctx) {
+  drawPlayer(ctx) {
     if (this.velY !== 0 || this.y < g_canvas.height - this.halfHeight) {
       this.sprites.jump.drawCentredAt(ctx, this.x, this.y);
     }
     else {
       this.sprites.stand.drawCentredAt(ctx, this.x, this.y);
+    }
+  }
+
+  calcDimensions() {
+    if (this.carLifetime > 0) {
+      this.halfWidth = (this.sprites.car.width * this.sprites.car.scale) / 2;
+      this.halfHeight = (this.sprites.car.height * this.sprites.car.scale) / 2;
+    } else {
+      this.halfWidth = (this.sprites.stand.width * this.sprites.stand.scale) / 2;
+      this.halfHeight = (this.sprites.stand.height * this.sprites.stand.scale) / 2;
+    }
+
+  }
+
+  drawCar(ctx) {
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.scale(-1, 1);
+    ctx.translate(-this.x, -this.y);
+    this.sprites.car.drawCentredAt(ctx, this.x, this.y);
+    ctx.restore();
+  }
+
+  render(ctx) {
+    if (this.carLifetime > 0) {
+      this.drawCar(ctx);
+    } else {
+      this.drawPlayer(ctx);
     }
 
     this.drawFuel(ctx);
@@ -56,9 +86,16 @@ class Player extends Entity {
 
   drawFuel(ctx) {
     ctx.save();
-    util.drawImage(ctx, g_images.gasoline, 10, 20, 0.1);
 
-    const fuelWidth = util.map(this.jetPackLifeTime, 0, this.maxJetpackLifeTime, 0, 200)
+    let fuelWidth;
+
+    if (this.carLifetime > 0) {
+      util.drawImage(ctx, g_images.gasoline, 10, 20, 0.1);
+      fuelWidth = util.map(this.carLifetime, 0, this.maxCarLifetime, 0, 200);
+    } else {
+      util.drawImage(ctx, g_images.jetpack, 10, 20, 0.06);
+      fuelWidth = util.map(this.jetPackLifeTime, 0, this.maxJetpackLifeTime, 0, 200);
+    }
 
     const gradient = ctx.createLinearGradient(10, 20, 210, 20);
 
@@ -88,6 +125,10 @@ class Player extends Entity {
       console.log('Dead');
     }
 
+    this.calcDimensions();
+
+    if (this.y >= g_canvas.height - this.halfHeight) this.isJumping = false;
+
     let thrust = this.computeThrust(du);
 
     thrust += this.gravity;
@@ -98,7 +139,6 @@ class Player extends Entity {
 
     this.handleEdges();
 
-    if (this.y >= g_canvas.height - this.halfHeight) this.isJumping = false;
 
     if (!this.isJumping && this.jetPackLifeTime < this.maxJetpackLifeTime) {
       this.jetPackLifeTime += du;
@@ -107,6 +147,10 @@ class Player extends Entity {
     if (this.numBullets > 0 && eatKey(this.KEY_USE)) {
       this.numBullets--;
       entityManager.createBullet(this.x, this.y);
+    }
+
+    if (this.carLifetime > 0) {
+      this.carLifetime -= du;
     }
 
     this.checkForCollission()
@@ -125,7 +169,10 @@ class Player extends Entity {
 
     if (hit) {
       const which = Object.getPrototypeOf(hit.constructor).name;
-      if (which === 'Obstacle') this.kill();
+      if (which === 'Obstacle') {
+        if (this.carLifetime > 0) hit.crash();
+        else this.kill();
+      }
       else {
         const powerup = hit.constructor.name;
 
@@ -139,7 +186,7 @@ class Player extends Entity {
           hit.consume();
           break;
           case 'Bar':
-          // Gera eitthvað
+          this.carLifetime = this.maxCarLifetime;
           hit.consume();
         }
       }
@@ -164,7 +211,7 @@ class Player extends Entity {
   computeThrust(du) {
     let thrust = 0;
 
-    if (keys[this.KEY_THRUST] && this.jetPackLifeTime > 0) {
+    if (keys[this.KEY_THRUST] && this.jetPackLifeTime > 0 && !(this.carLifetime > 0)) {
       this.isJumping = true;
       this.jetPackLifeTime -= du;
       thrust += NOMINAL_THRUST;

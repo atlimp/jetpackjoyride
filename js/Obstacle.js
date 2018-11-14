@@ -40,4 +40,8 @@ class Obstacle extends Entity {
   takeBulletHit() {
     this.kill();
   }
+
+  crash() {
+    this.kill();
+  }
 }
