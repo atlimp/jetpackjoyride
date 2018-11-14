@@ -19,11 +19,11 @@ class Bar extends PowerUp {
 
     update(du) {
         spatialManager.unregister(this);
-        
+
         if (this.isDead) return entityManager.KILL_ME_NOW;
 
         this.cy = Math.sin(this.angle) * this.ampl + this.originalY;
-        this.cx += this.velX * du;
+        this.cx += this.velX * g_speedMult * du;
 
         this.angle += this.freq;
         this.angle = this.angle > Math.PI * 2 ? 0 : this.angle;

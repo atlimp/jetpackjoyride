@@ -36,7 +36,7 @@ class Background {
   }
 
   update(du) {
-    this.xOff += this.xVel * du;
+    this.xOff += this.xVel * g_speedMult * du;
     this.xOff %= this.width * this.images.length;
   }
 }

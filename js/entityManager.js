@@ -124,6 +124,9 @@ class EntityManager {
       }
 
     }
+  }
 
+  setSpeedMult(val) {
+    g_speedMult = val;
   }
 }

@@ -18,7 +18,7 @@ class Obstacle extends Entity {
 
     if (this.isDead) return entityManager.KILL_ME_NOW;
 
-    this.x += this.velX * du;
+    this.x += this.velX * g_speedMult * du;
 
     if (this.x < -g_canvas.width) this.kill();
 
@@ -43,5 +43,9 @@ class Obstacle extends Entity {
 
   crash() {
     this.kill();
+  }
+
+  setVelMult(val) {
+    this.velMult = val;
   }
 }

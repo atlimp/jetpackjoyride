@@ -5,8 +5,12 @@ const entityManager = new EntityManager();
 const background1 = new Background(-1);
 const background2 = new Background(-2);
 
+const score = new Score();
+
 
 const achievement = new Achievement();
+
+let g_speedMult = 1;
 
 const TOGGLE_SPATIAL = keyCode('0');
 let USE_SPATIAL = false;
@@ -27,6 +31,7 @@ function updateSimulation(du) {
   background1.update(du);
   background2.update(du);
   entityManager.update(du);
+  score.update(du);
 }
 
 function gatherInputs() {
@@ -37,6 +42,7 @@ function renderSimulation(ctx) {
   background1.render(ctx);
   background2.render(ctx);
   entityManager.render(ctx);
+  score.render(ctx);
 
   if (USE_SPATIAL) spatialManager.render(ctx);
 }
@@ -68,10 +74,6 @@ async function preload() {
   const requiredImages = {
     playerJump: 'img/megamanjump.png',
     playerStand: 'img/megaman.png',
-    background1: 'img/background/background1.png',
-    background2: 'img/background/background2.png',
-    background3: 'img/background/background3.png',
-    background4: 'img/background/background4.png',
     backtrans1: 'img/background/backtrans1.png',
     backtrans2: 'img/background/backtrans2.png',
     backtrans3: 'img/background/backtrans3.png',
@@ -81,13 +83,12 @@ async function preload() {
     car2: 'img/car/bill2.png',
     car3: 'img/car/bill3.png',
     car4: 'img/car/bill4.png',
-    bird: 'img/mafur.png',
-    boy: 'img/skolaStrakur.png',
-    bjor1: 'img/einstok.png',
-    bjor2: 'img/kaldi.png',
-    gasoline: 'img/gasoline.png',
-    bullet: 'img/bullet.png',
-    jetpack: 'img/jetpack.png'
+    bird: 'img/bird/bird.png',
+    bjor1: 'img/beer/einstok.png',
+    bjor2: 'img/beer/kaldi.png',
+    bullet: 'img/bullet/bullet.png',
+    gasoline: 'img/icons/gasoline.png',
+    jetpack: 'img/icons/jetpack.png'
   };
 
   const keys = Object.keys(requiredImages);

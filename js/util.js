@@ -111,6 +111,8 @@ const util = {
   },
 
   map: function(x, a, b, c, d) {
+    if (x < a) return c;
+    if (x > b) return d;
     return (x-a)/(b-a)*(d-c) + c;
   },
 

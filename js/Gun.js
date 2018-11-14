@@ -27,9 +27,9 @@ class Gun extends PowerUp {
         spatialManager.unregister(this);
 
         if (this.isDead) return entityManager.KILL_ME_NOW;
-        
+
         // Fastur hraði
-        this.cx += this.velX * du;
+        this.cx += this.velX * g_speedMult * du;
         this.cy = this.originalY - Math.sin(this.angle) * this.ampl;
 
         this.angle += this.freq;

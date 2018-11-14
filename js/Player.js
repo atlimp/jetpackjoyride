@@ -12,12 +12,6 @@ class Player extends Entity {
 
     this.sprites = sprites;
 
-    /* Þetta á ekki að vera hér?
-    this.powerup = null;
-
-    this.powerup = new Gun();
-    */
-
     this.maxNumBullets = 10;
     this.numBullets = this.maxNumBullets;
 
@@ -32,7 +26,7 @@ class Player extends Entity {
     this.gravity = 0.12;
     this.initialGravity = 0.12;
 
-    this.maxJetpackLifeTime = 100;
+    this.maxJetpackLifeTime = 200;
     this.jetPackLifeTime = this.maxJetpackLifeTime;
     this.isJumping = true;
 
@@ -141,7 +135,7 @@ class Player extends Entity {
 
 
     if (!this.isJumping && this.jetPackLifeTime < this.maxJetpackLifeTime) {
-      this.jetPackLifeTime += du;
+      this.jetPackLifeTime += du * 0.5;
     }
 
     if (this.numBullets > 0 && eatKey(this.KEY_USE)) {
@@ -152,6 +146,8 @@ class Player extends Entity {
     if (this.carLifetime > 0) {
       this.carLifetime -= du;
     }
+
+    if (this.carLifetime <= 0) entityManager.setSpeedMult(1);
 
     this.checkForCollission()
 
@@ -187,6 +183,7 @@ class Player extends Entity {
           break;
           case 'Bar':
           this.carLifetime = this.maxCarLifetime;
+          entityManager.setSpeedMult(2);
           hit.consume();
         }
       }
