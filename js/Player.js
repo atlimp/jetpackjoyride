@@ -128,6 +128,9 @@ class Player extends Entity {
 
     if (this.isDead) {
       console.log('Dead');
+	  countManager.dead();
+	  //Setti this is dead sem false til að keyra counters áfram
+	  this.isDead = false;
     }
 
     this.calcDimensions();

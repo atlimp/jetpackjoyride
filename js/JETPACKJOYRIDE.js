@@ -2,13 +2,9 @@ const g_canvas = document.getElementById("myCanvas");
 const g_ctx = g_canvas.getContext("2d");
 
 const entityManager = new EntityManager();
-
-// Backgrounds
+const countManager = new CounterManager();
 const background1 = new Background(-1);
 const background2 = new Background(-2);
-
-const score = new Score();
-
 
 const achievement = new Achievement();
 
@@ -35,7 +31,7 @@ function updateSimulation(du) {
   background1.update(du);
   background2.update(du);
   entityManager.update(du);
-  score.update(du);
+  countManager.update(du);
 }
 
 function gatherInputs() {
@@ -46,7 +42,8 @@ function renderSimulation(ctx) {
   background1.render(ctx);
   background2.render(ctx);
   entityManager.render(ctx);
-  score.render(ctx);
+  countManager.render(ctx);
+  achievement.render(ctx);
 
   if (USE_SPATIAL) spatialManager.render(ctx);
 }
@@ -57,6 +54,10 @@ const g_images = {};
 // Initial function after images have been loaded
 function start() {
   entityManager.createPlayer();
+
+  for(let i = 0; i < 2; i++) {
+	  countManager.createCounter();
+  }
 
   background1.setImages([
     g_images.mountain,
