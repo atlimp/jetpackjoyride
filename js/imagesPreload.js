@@ -1,3 +1,7 @@
+/****************************************
+**  NEW AND IMPROVED IMAGES PRELOAD!!  **
+****************************************/
+
 function loadImage(url) {
   return new Promise((resolve, reject) => {
     const img = new Image();

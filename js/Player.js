@@ -6,12 +6,15 @@ class Player extends Entity {
     // Call Entity contructor
     super();
 
-    this.x = g_canvas.width / 6; //Make sure that the player object is closer to the left
+    // Positional and velocity stuff
+    this.x = g_canvas.width / 6;
     this.y = g_canvas.height / 2;
     this.velY = 0;
 
+    // Sprites is object, includes standing, jumping and car sprite
     this.sprites = sprites;
 
+    // For gun powerup
     this.maxNumBullets = 10;
     this.numBullets = this.maxNumBullets;
 
@@ -26,10 +29,12 @@ class Player extends Entity {
     this.gravity = 0.12;
     this.initialGravity = 0.12;
 
+    // jetpack stuff
     this.maxJetpackLifeTime = 200;
     this.jetPackLifeTime = this.maxJetpackLifeTime;
     this.isJumping = true;
 
+    // For car powerup
     this.maxCarLifetime = 500;
     this.carLifetime = 0;
 
@@ -46,6 +51,8 @@ class Player extends Entity {
     }
   }
 
+  // Since width is different depending on car powerup, dimensions are always
+  // recalculated
   calcDimensions() {
     if (this.carLifetime > 0) {
       this.halfWidth = (this.sprites.car.width * this.sprites.car.scale) / 2;
@@ -57,6 +64,7 @@ class Player extends Entity {
 
   }
 
+  // Draws car sprite at x, y
   drawCar(ctx) {
     ctx.save();
     ctx.translate(this.x, this.y);
@@ -66,6 +74,7 @@ class Player extends Entity {
     ctx.restore();
   }
 
+  // Chooses wether to draw player or car powerup
   render(ctx) {
     if (this.carLifetime > 0) {
       this.drawCar(ctx);
@@ -78,6 +87,7 @@ class Player extends Entity {
 
   }
 
+  // Draws fuel bar to indicate either car lifetime or jetPackLifeTime
   drawFuel(ctx) {
     ctx.save();
 
@@ -103,6 +113,7 @@ class Player extends Entity {
     ctx.restore();
   }
 
+  // Draws number of bullets left
   drawNumBullets(ctx) {
     ctx.save();
     util.drawImage(ctx, g_images.bullet, 10, 55, 0.2);
@@ -133,20 +144,23 @@ class Player extends Entity {
 
     this.handleEdges();
 
-
+    // charge jetpack, only if not in the air
     if (!this.isJumping && this.jetPackLifeTime < this.maxJetpackLifeTime) {
       this.jetPackLifeTime += du * 0.5;
     }
 
+    // Maybe fire bullet
     if (this.numBullets > 0 && eatKey(this.KEY_USE)) {
       this.numBullets--;
       entityManager.createBullet(this.x, this.y);
     }
 
+    // Update car powerup
     if (this.carLifetime > 0) {
       this.carLifetime -= du;
     }
 
+    // Update speed multiplier if car powerup is disabled
     if (this.carLifetime <= 0) entityManager.setSpeedMult(1);
 
     this.checkForCollission()
@@ -156,6 +170,7 @@ class Player extends Entity {
 
   checkForCollission() {
 
+    // Ask spatialManager to find collission
     const hit = spatialManager.findEntityInRange({
       x: this.x,
       y: this.y,
@@ -164,11 +179,14 @@ class Player extends Entity {
     });
 
     if (hit) {
+      // Get type of hit object, powerup or obstacle
       const which = Object.getPrototypeOf(hit.constructor).name;
       if (which === 'Obstacle') {
+        // If car powerup is enabled, player is indestructable
         if (this.carLifetime > 0) hit.crash();
         else this.kill();
       }
+      // Otherwise check which powerup was collected
       else {
         const powerup = hit.constructor.name;
 
@@ -183,6 +201,7 @@ class Player extends Entity {
           break;
           case 'Bar':
           this.carLifetime = this.maxCarLifetime;
+          // Set global speed multiplier to 2, speeds everything up
           entityManager.setSpeedMult(2);
           hit.consume();
         }
@@ -195,6 +214,7 @@ class Player extends Entity {
     if(keys[this.KEY_RIGHT] && this.x < g_canvas.width/3) this.x += 5;
     if(keys[this.KEY_LEFT] && this.x > 50) this.x -= 5;
   }
+  
   handleEdges() {
     if (this.y < this.halfHeight) {
       this.y = 0 + this.halfHeight;

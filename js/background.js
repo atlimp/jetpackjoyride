@@ -2,6 +2,8 @@ class Background {
 
   constructor(xVel) {
     this.xOff = 0;
+
+    // Scrolling speed
     this.xVel = xVel;
   }
 
@@ -9,10 +11,12 @@ class Background {
     ctx.save();
     ctx.translate(this.xOff, 0);
 
+    // Draw images next to each other in order
     for (let i = 0; i < this.images.length; i++) {
       ctx.drawImage(this.images[i], i * this.width, 0, this.width, this.height);
     }
 
+    // Draw first image again, because reasons.
     ctx.drawImage(
       this.images[0],
       this.width * this.images.length,
@@ -24,6 +28,8 @@ class Background {
     ctx.restore();
   }
 
+  // Sets images for this background.  Calculates width and height based on
+  // canvas.height, aspect ratio is conserved
   setImages(images) {
     this.images = images
     const origWidth = this.images[0].width;

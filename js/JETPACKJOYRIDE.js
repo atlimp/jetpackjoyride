@@ -2,6 +2,8 @@ const g_canvas = document.getElementById("myCanvas");
 const g_ctx = g_canvas.getContext("2d");
 
 const entityManager = new EntityManager();
+
+// Backgrounds
 const background1 = new Background(-1);
 const background2 = new Background(-2);
 
@@ -10,6 +12,7 @@ const score = new Score();
 
 const achievement = new Achievement();
 
+// Global speed multiplier, simplifies speeding everything up
 let g_speedMult = 1;
 
 const TOGGLE_SPATIAL = keyCode('0');
@@ -27,6 +30,7 @@ function updateSimulation(du) {
   if (Math.floor(Math.random() * 10000) < 20) {
     entityManager.createRandomPowerUp();
   }
+
   achievement.update();
   background1.update(du);
   background2.update(du);
@@ -49,6 +53,8 @@ function renderSimulation(ctx) {
 
 const g_images = {};
 
+
+// Initial function after images have been loaded
 function start() {
   entityManager.createPlayer();
 
@@ -61,16 +67,12 @@ function start() {
     g_images.backtrans2,
     g_images.backtrans3,
     g_images.backtrans4,
-    // g_images.background1,
-    // g_images.background2,
-    // g_images.background3,
-    // g_images.background4,
   ]);
 
   main.init();
 }
 
-async function preload() {
+(async function preload() {
   const requiredImages = {
     playerJump: 'img/megamanjump.png',
     playerStand: 'img/megaman.png',
@@ -104,6 +106,4 @@ async function preload() {
   } catch (e) {
     console.error(e);
   }
-}
-
-preload();
+})();

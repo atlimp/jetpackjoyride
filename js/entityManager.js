@@ -1,17 +1,25 @@
 class EntityManager {
 
   constructor() {
+    // Array for obstacles
     this.obstacles = [];
     // powerup fylki
     this.powerups = [];
+
+    // Array for bullets
     this.bullets = [];
     this.KILL_ME_NOW = -1;
+
+    // Contructor functions for powerups
+    // Makes it easier to get random powerup
     this.powerupsFunc = [
       this.createGun,
       this.createBar,
       this.createFillTank
     ];
 
+    // Contructor functions for obstacles
+    // Makes it easier to get random obstacle
     this.obstacleConstructors = [
       this.createCar,
       this.createBird,
@@ -20,6 +28,11 @@ class EntityManager {
 
   }
 
+
+  /****************************************
+  **  Functions to create obstacles and  **
+  **  powerups                           **
+  ****************************************/
   createCar() {
     const images = [
       g_images.car1,
@@ -69,6 +82,7 @@ class EntityManager {
     return new Bar(image);
   }
 
+  // Creates player
   createPlayer() {
     const sprites = {
       jump: new Sprite(g_images.playerJump, 0.2),
@@ -79,6 +93,7 @@ class EntityManager {
     this.player = new Player(sprites);
   }
 
+  // Creates random obstacle, only 4 allowed at a time
   createRandomObstacle(du) {
     if (this.obstacles.length > 4) return;
 
@@ -136,6 +151,7 @@ class EntityManager {
     return this.player.getPos();
   }
 
+  // Sets global speed multiplier
   setSpeedMult(val) {
     g_speedMult = val;
   }

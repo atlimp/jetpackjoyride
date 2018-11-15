@@ -2,6 +2,7 @@ class Rocket extends Obstacle {
   constructor(x, y, sprite) {
     super(x, y, sprite);
 
+    // Starts its life following players y pos
     this.isLookingLifeTime = 200;
 
     this.maxYVel = 2;
@@ -31,13 +32,16 @@ class Rocket extends Obstacle {
 
     if (this.isDead) return entityManager.KILL_ME_NOW;
 
+    // Move to y pos of player
     if (this.isLookingLifeTime > 0) {
       const { y } = entityManager.getPlayerPos();
       const diff = y - this.y;
       this.yVel = diff < 0 ? -this.maxYVel : this.maxYVel;
       this.y += this.yVel;
       this.isLookingLifeTime -= du;
-    } else {
+    }
+    // Otherwise only update x pos, y pos is locked in after looking
+    else {
       this.xVel += this.accelX * du;
       this.x += this.xVel * du;
     }

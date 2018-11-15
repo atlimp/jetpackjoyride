@@ -9,10 +9,13 @@ class Obstacle extends Entity {
 
     this.velX = -2;
 
+    // Dimensions calculated based on sprite
     this.halfWidth = this.sprite ? (this.sprite.width * this.sprite.scale) / 2: 25;
     this.halfHeight = this.sprite ? (this.sprite.height * this.sprite.scale) / 2 : 25;
   }
 
+  // Default update function.  Constant x velocity
+  // and killed after going offscreen
   update(du) {
     spatialManager.unregister(this);
 
@@ -25,6 +28,7 @@ class Obstacle extends Entity {
     spatialManager.register(this);
   }
 
+  // Default render function.  Draws circle
   render(ctx) {
     util.fillCircle(ctx, this.x, this.y, this.halfWidth * 2);
   }
@@ -43,9 +47,5 @@ class Obstacle extends Entity {
 
   crash() {
     this.kill();
-  }
-
-  setVelMult(val) {
-    this.velMult = val;
   }
 }

@@ -86,6 +86,7 @@ const util = {
     ctx.fillRect(x, y, w, h);
   },
 
+  // Calculates subcoordinates for spritesheet
   getSubCoordinates: (sprite, spriteCount, rows, cols) => {
     const w = sprite.width;
     const h = sprite.height;
