@@ -4,7 +4,7 @@ class Score{
   }
 
   status() {
-	   return this.status;
+	   return this.score;
   }
 
   update(du) {
@@ -12,7 +12,8 @@ class Score{
   }
 
   render(ctx) {
-    ctx.fillText(this.score, g_canvas.width / 2, g_canvas.height / 2);
+	ctx.font = "20px Arial";
+    ctx.fillText(this.score, g_canvas.width / 2, 20);
   }
 
 }
