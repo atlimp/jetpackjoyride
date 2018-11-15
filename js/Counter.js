@@ -1,21 +1,31 @@
 class Counter{
   constructor() {
-	   this.count = 0;
-	   this.x = 300;
-	   this.y = 200;
+	this.count = 0;
+	this.x = 300;
+	this.y = 200;
+	this.speedOfCount = 1;
+	this.divisionOfCount = 1;
   }
 
   status() {
-	   return this.count;
+	return this.count;
+  }
+  
+  setSpeed(speed) {
+	this.speedOfCount = speed;
+  }
+  
+  setDivision(div) {
+	  this.divisionOfCount = div;
   }
   
   setPos(x, y) {
-	  this.x = x;
-	  this.y = y;
+	this.x = x;
+	this.y = y;
   }
 
-  update(du, speed) {
-    this.count += Math.floor(g_speedMult * du);
+  update(du) {
+    this.count += Math.floor(g_speedMult * du)/this.divisionOfCount;
   }
 
   render(ctx) {

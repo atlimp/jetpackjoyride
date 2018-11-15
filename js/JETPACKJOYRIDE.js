@@ -41,6 +41,7 @@ function renderSimulation(ctx) {
   background2.render(ctx);
   entityManager.render(ctx);
   countManager.render(ctx);
+  achievement.render(ctx);
 
   if (USE_SPATIAL) spatialManager.render(ctx);
 }
