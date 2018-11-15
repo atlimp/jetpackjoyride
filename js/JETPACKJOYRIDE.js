@@ -81,7 +81,7 @@ function start() {
     backtrans2: 'img/background/backtrans2.png',
     backtrans3: 'img/background/backtrans3.png',
     backtrans4: 'img/background/backtrans4.png',
-    mountain: '../img/background/mountain.jpg',
+    mountain: 'img/background/mountain.jpg',
     car1: 'img/car/bill1.png',
     car2: 'img/car/bill2.png',
     car3: 'img/car/bill3.png',
