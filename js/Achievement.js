@@ -11,6 +11,7 @@ class Achievement  {
 	this.text = "This is the text";
 	
 	this.timeoutScore = 0;
+	this.currentTime = 0;
   }
 
   spawnAchievement() {
@@ -19,6 +20,10 @@ class Achievement  {
 
   removeAcievement() {
 	  
+  }
+  
+  toSec(min) {
+	return min*60;
   }
   
   drawBox(ctx) {
@@ -30,9 +35,10 @@ class Achievement  {
 	util.fillBox(ctx, x, y, this.box_W, this.box_H);
   }
   
-  scoreCheck() {
-	  const val = countManager.scoreStatus();
-	  const max = countManager.maxScoreStatus();
+  clockCheck() {
+		const clock = countManager.clockStat();
+		const sec = clock.sec;
+		const min = clock.min;
 	  
 	  /*if(val > max) {
 		this.text = "HIGHSCORE!";
@@ -41,12 +47,13 @@ class Achievement  {
 		return;
 	  }*/
 	  
-	  
-	  switch(val) {
-	    case 1000:
-		  this.timeoutScore = val;
-		  this.text = "Got a thousand";
+	  this.currentTime = sec + this.toSec(min);
+	  switch(this.currentTime) {
+	    case 10:
+		  this.timeoutScore = this.currentTime + 5;
+		  this.text = "Survived 10sec";
 		  this.showBox = true
+		  console.log(this.text);
 		  break;
 		case 10000:
 		  this.timeoutScore = val;
@@ -59,7 +66,7 @@ class Achievement  {
 
   update() {
   	
-  	this.scoreCheck();
+  	this.clockCheck();
   }
 
   render(ctx) {
@@ -68,9 +75,9 @@ class Achievement  {
 		this.drawBox(ctx);
 		ctx.restore();
 	}
-	if(this.timeoutScore >= this.timeoutScore+100){ 
+	if(this.currentTime === this.timeoutScore){ 
 	  this.showBox = false;
-	  ctx.clearCanvas();
+	  
 	}
 	
   }

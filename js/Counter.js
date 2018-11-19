@@ -1,29 +1,23 @@
 class Counter{
   constructor() {
   this.count = 0;
-  this.clock = 0;
+  this.clock = 50*60; //Setja klukkuna á 10min timer 50min x 60sec
   this.minutes = 0;
   this.seconds = 0;
   this.display;
-	this.x = 300;
-	this.y = 200;
-	this.speedOfCount = 1;
-  this.divisionOfCount = 1;
-  this.date = new Date('1995-12-17T17:50:00')
+  this.x = 300;
+  this.y = 200;
+  this.date = new Date('1995-12-17T17:50:50')
   }
 
-  status() {
-	return this.count;
+  minuteStat() {
+	  return this.minutes;
   }
-  
-  setSpeed(speed) {
-	this.speedOfCount = speed;
+
+  secStat() {
+	return this.seconds;
   }
-  
-  setDivision(div) {
-	  this.divisionOfCount = div;
-  }
-  
+
   setPos(x, y) {
 	this.x = x;
 	this.y = y;
@@ -34,7 +28,8 @@ class Counter{
     if (this.count >= 60) {
       this.clock += 1;
       this.count = 0;
-    } 
+    }
+	console.log(this.seconds);
   }
 
   render(ctx) {
