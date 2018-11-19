@@ -5,23 +5,17 @@ class Counter{
   this.minutes = 0;
   this.seconds = 0;
   this.display;
-	this.x = 300;
-	this.y = 200;
-	this.speedOfCount = 1;
-  this.divisionOfCount = 1;
-  this.date = new Date('1995-12-17T17:50:00')
+  this.x = 300;
+  this.y = 200;
+  this.date = new Date('1995-12-17T17:50:50')
   }
 
-  status() {
-	return this.count;
+  minuteStat() {
+	  return this.minutes;
   }
   
-  setSpeed(speed) {
-	this.speedOfCount = speed;
-  }
-  
-  setDivision(div) {
-	  this.divisionOfCount = div;
+  secStat() {
+	return this.seconds;
   }
   
   setPos(x, y) {
@@ -35,6 +29,7 @@ class Counter{
       this.clock += 1;
       this.count = 0;
     } 
+	console.log(this.seconds);
   }
 
   render(ctx) {

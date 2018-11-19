@@ -55,10 +55,8 @@ const g_images = {};
 function start() {
   entityManager.createPlayer();
 
-  for(let i = 0; i < 2; i++) {
-	  countManager.createCounter();
-  }
-
+  countManager.createCounter();
+  
   background1.setImages([
     g_images.mountain,
   ]);
