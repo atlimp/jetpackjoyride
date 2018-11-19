@@ -17,12 +17,20 @@ class Menu  {
   }
   
   drawMenu(ctx) {
+
 	ctx.fillStyle = "#000";
 	util.fillBox(ctx, this.x, this.y, this.w, this.h)
 	ctx.fillStyle = "#FFF";
 	ctx.fillText(this.menuText, this.w-this.x+15, this.y+30);
+	//this.drawButton(ctx);
 	ctx.stroke();
   }
+  
+  /*drawButton(ctx){
+	util.fillBox(ctx, this.w-this.x, this.h/2-40, 100, 80);
+	ctx.fillStyle = "#000";
+	ctx.fillText("Unpause", 360, 290);
+  }*/
 	  
   update() { 	
   	

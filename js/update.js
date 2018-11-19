@@ -18,7 +18,6 @@ let g_prevUpdateDu = null;
 let g_isUpdateOdd = false;
 
 // Boolean fyrir menu
-let useMenu = true;
 
 function update(dt) {
 
