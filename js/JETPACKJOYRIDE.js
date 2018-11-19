@@ -15,11 +15,14 @@ const g_startTimer = 50*60;
 let g_speedMult = 1;
 
 const TOGGLE_SPATIAL = keyCode('0');
+const TOGGLE_MENU = 27; // Escape
 let USE_SPATIAL = false;
+
 
 function updateSimulation(du) {
 
   if (eatKey(TOGGLE_SPATIAL)) USE_SPATIAL = !USE_SPATIAL;
+
 
   if (Math.random() < 0.01) {
     entityManager.createRandomObstacle(du);
