@@ -18,6 +18,8 @@ let g_prevUpdateDu = null;
 let g_isUpdateOdd = false;
 
 // Boolean fyrir menu
+let useMenu = false;
+
 
 function update(dt) {
 
@@ -67,7 +69,8 @@ let g_isUpdatePaused = false;
 function shouldSkipUpdate() {
   if (eatKey(KEY_PAUSE)) {
     g_isUpdatePaused = !g_isUpdatePaused;
-	menu.show();
   }
+  if (useMenu) return true;
+
   return g_isUpdatePaused && !eatKey(KEY_STEP);
 }

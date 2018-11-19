@@ -54,7 +54,6 @@ class Menu {
   render(ctx) {
     ctx.save();
     ctx.fillStyle = 'black';
-    //util.fillCircle(ctx, 50, 50, 50);
     util.fillBox(ctx, this.x, this.y, this.width, this.height);
 
     ctx.fillStyle = '#ffff00';
