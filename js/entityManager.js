@@ -28,6 +28,11 @@ class EntityManager {
 
   }
 
+  toggleMenu(text) {
+    menu.setText(text);
+    useMenu = true;
+
+  }
 
   /****************************************
   **  Functions to create obstacles and  **

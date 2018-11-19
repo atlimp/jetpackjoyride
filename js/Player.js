@@ -171,6 +171,10 @@ class Player extends Entity {
     spatialManager.register(this);
   }
 
+  kill() {
+    entityManager.toggleMenu("DEAD!!!");
+  }
+
   checkForCollission() {
 
     // Ask spatialManager to find collission

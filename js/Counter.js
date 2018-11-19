@@ -9,7 +9,7 @@ class Counter{
 	this.y = 200;
 	this.speedOfCount = 1;
   this.divisionOfCount = 1;
-  this.date = new Date('1995-12-17T17:50:00')
+  this.countClock = false;
   }
 
   status() {
@@ -42,7 +42,6 @@ class Counter{
     this.minutes = Math.floor(this.clock / 60) > 9 ? Math.floor(this.clock / 60) : "0" + (Math.floor(this.clock / 60)).toString();
     this.seconds = this.clock % 60 > 9 ? this.clock % 60 : "0" + (this.clock % 60).toString();
     this.display = "17:" + this.minutes.toString() + ":" + this.seconds.toString();
-    //this.display = "17:" + this.date.getMinutes().toString() + ":" + this.date.getSeconds().toString();
     ctx.fillText(this.display, this.x, this.y);
   }
 

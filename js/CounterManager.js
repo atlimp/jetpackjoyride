@@ -25,7 +25,7 @@ class CounterManager{
 	  for(let i = 0; i < this.counters.length; i++) {
 		  let counter =  this.counters[i]
 		  if(i == 1) counter.setDivision(8);
-		  counter.update(du);
+			counter.update(du);
 	  }
   }
   
