@@ -19,7 +19,9 @@ class Menu {
         util.fillBox(ctx, this.x, this.y, this.width, this.height);
         ctx.fillStyle = 'white';
         ctx.fillText(this.text, this.width/2, this.y + 50);
-        util.fillBox(ctx, this.x, this.y, this.width, this.height);
+        ctx.fillText("New Game", this.width/2, this.y + 100);
+        ctx.fillText("Quit", this.width/2, this.y + 150);
+
         
         //console.log('hææææ');
         ctx.restore();

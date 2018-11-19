@@ -92,7 +92,7 @@ class EntityManager {
     const sprites = {
       jump: new Sprite(g_images.playerJump, 0.2),
       stand: new Sprite(g_images.playerStand, 0.2),
-      car: new Sprite(g_images.car1),
+      car: new Sprite(g_images.monstertruck, 0.9),
     };
 
     this.player = new Player(sprites);

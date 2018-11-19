@@ -93,6 +93,7 @@ function start() {
     car2: 'img/car/bill2.png',
     car3: 'img/car/bill3.png',
     car4: 'img/car/bill4.png',
+    monstertruck: 'img/car/monstertruck.png',
     bird: 'img/bird/bird.png',
     rocket: 'img/rocket.png',
     bjor1: 'img/beer/einstok.png',
