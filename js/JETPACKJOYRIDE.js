@@ -9,6 +9,8 @@ const menu = new Menu();
 
 const achievement = new Achievement();
 
+const g_startTimer = 50*60;
+
 // Global speed multiplier, simplifies speeding everything up
 let g_speedMult = 1;
 
@@ -62,10 +64,8 @@ const g_images = {};
 function start() {
   entityManager.createPlayer();
 
-  for(let i = 0; i < 2; i++) {
-	  countManager.createCounter();
-  }
-
+  countManager.createCounter();
+  
   background1.setImages([
     g_images.mountain,
   ]);

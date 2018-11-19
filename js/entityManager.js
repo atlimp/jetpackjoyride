@@ -51,7 +51,7 @@ class EntityManager {
     return new Car(
       g_canvas.width * 2,
       g_canvas.height,
-      new Sprite(images[rand])
+      new Sprite(images[rand], 0.8)
     );
   }
 

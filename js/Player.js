@@ -15,8 +15,8 @@ class Player extends Entity {
     this.sprites = sprites;
 
     // For gun powerup
-    this.maxNumBullets = 10;
-    this.numBullets = this.maxNumBullets;
+    this.bulletInc = 3;
+    this.numBullets = 0;
 
     //Keys for movement
     this.KEY_USE = keyCode('F');
@@ -30,7 +30,7 @@ class Player extends Entity {
     this.initialGravity = 0.12;
 
     // jetpack stuff
-    this.maxJetpackLifeTime = 200;
+    this.maxJetpackLifeTime = 300;
     this.jetPackLifeTime = this.maxJetpackLifeTime;
     this.isJumping = true;
 
@@ -203,7 +203,7 @@ class Player extends Entity {
           hit.consume();
           break;
           case 'Gun':
-          this.numBullets = this.maxNumBullets;
+          this.numBullets += this.bulletInc;
           hit.consume();
           break;
           case 'Bar':
@@ -221,7 +221,7 @@ class Player extends Entity {
     if(keys[this.KEY_RIGHT] && this.x < g_canvas.width/3) this.x += 5;
     if(keys[this.KEY_LEFT] && this.x > 50) this.x -= 5;
   }
-  
+
   handleEdges() {
     if (this.y < this.halfHeight) {
       this.y = 0 + this.halfHeight;

@@ -10,16 +10,18 @@ class Rocket extends Obstacle {
     this.accelX = -0.2;
     this.xVel = 0;
     this.yVel = 0;
+
+    this.scale = 0.3;
   }
 
   render(ctx) {
     if (this.isLookingLifeTime > 0) {
       ctx.save()
       ctx.translate(this.x, this.y);
-      ctx.scale(0.3, 0.3);
+      ctx.scale(this.scale, this.scale);
       ctx.translate(-this.x, -this.y);
 
-      const indicatorX = g_canvas.width - (this.sprite.width * 0.3) - 50
+      const indicatorX = g_canvas.width - (this.sprite.width * this.scale) - 50
       this.sprite.drawCentredAt(ctx, indicatorX, this.y);
       ctx.restore();
     }
