@@ -47,7 +47,7 @@ const spatialManager = {
     return true;
   },
 
-  render(ctx) {
+  render: function(ctx) {
     for (let i = 0; i < this._entities.length; i++) {
       const entity = this._entities[i];
       if (entity && entity.getPos) {
@@ -59,5 +59,10 @@ const spatialManager = {
         ctx.restore()
       }
     }
+  },
+
+  reset: function() {
+    this._nextSpatialID = 1;
+    this._entities = [];
   }
 };

@@ -1,3 +1,5 @@
+let reqID = undefined;
+
 const main = {
 
   // "Frame Time" is a (potentially high-precision) frame-clock for animations
@@ -52,11 +54,8 @@ main.gameOver = function () {
   console.log("gameOver: quitting...");
 };
 
-// Simple voluntary quit mechanism
-//
-var KEY_QUIT = 'Q'.charCodeAt(0);
 function requestedQuit() {
-  return keys[KEY_QUIT];
+  return g_quit;
 }
 
 // Annoying shim for Firefox and Safari
@@ -71,7 +70,9 @@ function mainIterFrame(frameTime) {
 }
 
 main._requestNextIteration = function () {
-  window.requestAnimationFrame(mainIterFrame);
+  // if (!reqID) {
+    reqID = window.requestAnimationFrame(mainIterFrame);
+  // }
 };
 
 // Mainloop-level debug-rendering
@@ -104,6 +105,12 @@ main.init = function () {
   // so let's use a fillStyle which works against that...
   //
   g_ctx.fillStyle = "white";
+
+  if (reqID) {
+    window.cancelAnimationFrame(reqID);
+    reqID = undefined;
+  }
+
 
   this._requestNextIteration();
 };

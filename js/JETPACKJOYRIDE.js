@@ -1,11 +1,13 @@
 const g_canvas = document.getElementById("myCanvas");
 const g_ctx = g_canvas.getContext("2d");
 
-const entityManager = new EntityManager();
-const countManager = new CounterManager();
-const background1 = new Background(-1);
-const background2 = new Background(-2);
-const menu = new Menu();
+let entityManager;
+let countManager;
+let background1;
+let background2;
+let menu;
+
+let g_quit = false;
 
 const achievement = new Achievement();
 
@@ -54,18 +56,29 @@ function renderSimulation(ctx) {
   if (USE_SPATIAL) spatialManager.render(ctx);
   if (useMenu){
     menu.render(ctx);
-  } 
+  }
 }
 
 const g_images = {};
 
+function initVariables() {
+  entityManager = new EntityManager();
+  spatialManager.reset();
+  countManager = new CounterManager();
+  background1 = new Background(-1);
+  background2 = new Background(-2);
+  menu = new Menu();
+  useMenu = false;
+}
+
 
 // Initial function after images have been loaded
 function start() {
+  initVariables();
   entityManager.createPlayer();
 
   countManager.createCounter();
-  
+
   background1.setImages([
     g_images.mountain,
   ]);
@@ -99,7 +112,7 @@ function start() {
     bjor2: 'img/beer/kaldi.png',
     bullet: 'img/bullet/bullet.png',
     gasoline: 'img/icons/gasoline.png',
-    jetpack: 'img/icons/jetpack.png'
+    jetpack: 'img/icons/jetpack.png',
   };
 
   const keys = Object.keys(requiredImages);
