@@ -16,7 +16,7 @@ class Player extends Entity {
 
     // For gun powerup
     this.bulletInc = 3;
-    this.numBullets = 0;
+    this.numBullets = 100;
 
     //Keys for movement
     this.KEY_USE = keyCode('F');
@@ -36,7 +36,7 @@ class Player extends Entity {
 
     // For car powerup
     this.maxCarLifetime = 500;
-    this.carLifetime = 0;
+    this.carLifetime = 500000;
 
     this.calcDimensions();
 
@@ -68,8 +68,11 @@ class Player extends Entity {
   drawCar(ctx) {
     ctx.save();
     ctx.translate(this.x, this.y);
-    ctx.scale(-1, 1);
+    ctx.scale(1, 1 );
     ctx.translate(-this.x, -this.y);
+    this.sprites.stand.drawCentredAt(ctx, this.x, this.y);
+    ctx.restore();
+    ctx.save();
     this.sprites.car.drawCentredAt(ctx, this.x, this.y);
     ctx.restore();
   }
