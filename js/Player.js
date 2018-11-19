@@ -170,6 +170,7 @@ class Player extends Entity {
 
   kill() {
     entityManager.toggleMenu("DEAD!!!");
+    
   }
 
   checkForCollission() {

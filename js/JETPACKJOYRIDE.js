@@ -13,6 +13,7 @@ const achievement = new Achievement();
 
 const g_startTimer = 50*60;
 
+
 // Global speed multiplier, simplifies speeding everything up
 let g_speedMult = 1;
 
@@ -22,12 +23,17 @@ let USE_SPATIAL = false;
 
 
 function updateSimulation(du) {
-
+  const counter = countManager.counters[0].minutes - 49;
+  //console.log(counter);
+  if (entityManager.player.carLifeTime === 0) {
+    g_speedMult = util.map(counter, 1, 10, 1, 3);
+  }
+  
   if (eatKey(TOGGLE_SPATIAL)) USE_SPATIAL = !USE_SPATIAL;
 
 
-  if (Math.random() < 0.01) {
-    entityManager.createRandomObstacle(du);
+  if (Math.random() < counter * 0.01) {
+    entityManager.createRandomObstacle();
   }
 
   // random fyrir new power-up

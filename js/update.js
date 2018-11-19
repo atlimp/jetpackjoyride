@@ -25,8 +25,8 @@ function update(dt) {
 
   // Get out if skipping (e.g. due to pause-mode)
   //
-  if (eatKey(TOGGLE_MENU)) {
-    useMenu = !useMenu;
+  if (eatKey(TOGGLE_MENU) && !useMenu) {
+    useMenu = true; //!useMenu;
     // const fart = new Menu();
     // fart.render(g_ctx);
   }

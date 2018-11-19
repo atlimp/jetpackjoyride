@@ -1,6 +1,7 @@
 class EntityManager {
 
   constructor() {
+    this.oldSpeedMult = g_speedMult;
     // Array for obstacles
     this.obstacles = [];
     // powerup fylki
@@ -158,6 +159,14 @@ class EntityManager {
 
   // Sets global speed multiplier
   setSpeedMult(val) {
-    g_speedMult = val;
+    if (val === 2) {
+      this.oldSpeedMult = g_speedMult;
+      g_speedMult *= val;
+    }
+    else {
+      g_speedMult = this.oldSpeedMult;
+
+    }
+    
   }
 }
