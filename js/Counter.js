@@ -29,7 +29,7 @@ class Counter{
       this.clock += 1;
       this.count = 0;
     }
-	console.log(this.seconds);
+	//console.log(this.seconds);
   }
 
   render(ctx) {
