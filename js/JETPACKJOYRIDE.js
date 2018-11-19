@@ -8,6 +8,8 @@ const background2 = new Background(-2);
 
 const achievement = new Achievement();
 
+const g_startTimer = 50*60;
+
 // Global speed multiplier, simplifies speeding everything up
 let g_speedMult = 1;
 

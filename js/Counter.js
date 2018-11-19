@@ -1,7 +1,7 @@
 class Counter{
   constructor() {
   this.count = 0;
-  this.clock = 50*60; //Setja klukkuna á 10min timer 50min x 60sec
+  this.clock = g_startTimer; //Setja klukkuna á 10min timer 50min x 60sec
   this.minutes = 0;
   this.seconds = 0;
   this.display;
