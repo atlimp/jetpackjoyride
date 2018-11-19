@@ -63,8 +63,6 @@ class Achievement  {
 	    this.showBox = true;
 	    break;
 	}
-	
-
   }
 	  
   update() { 	

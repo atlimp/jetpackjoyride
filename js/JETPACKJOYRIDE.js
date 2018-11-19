@@ -50,11 +50,9 @@ function renderSimulation(ctx) {
   entityManager.render(ctx);
   countManager.render(ctx);
   achievement.render(ctx);
+  menu.render(ctx);
 
   if (USE_SPATIAL) spatialManager.render(ctx);
-  if (useMenu){
-    menu.render(ctx);
-  } 
 }
 
 const g_images = {};

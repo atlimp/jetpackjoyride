@@ -1,17 +1,24 @@
-class Menu {
-    constructor() {
-        this.x = 50;
-        this.y = 50;
-        this.width = g_canvas.width - 100;
-        this.height = g_canvas.height - 100;
-        this.text = "Jetpack Joyride!";
-        //entityManager.player.isDead() ?
-    }
+class Menu  {
 
-    setText(text) {
-        this.text = text;
-    }
+  constructor() {
+	this.menuShow = false;
+	
+	this.menuText = "Pause";
+	
+	this.x = 150;
+	this.y = 15;
+	
+	this.w = g_canvas.width - this.x*2;
+	this.h = g_canvas.height - this.y*2;
+  }
+  
+  show() {
+	this.menuShow = !this.menuShow;
+  }
+  
+  drawMenu(ctx) {
 
+<<<<<<< HEAD
     render(ctx) {
         ctx.save();
         ctx.fillStyle = 'black';
@@ -26,6 +33,31 @@ class Menu {
         //console.log('hææææ');
         ctx.restore();
     }
+=======
+	ctx.fillStyle = "#000";
+	util.fillBox(ctx, this.x, this.y, this.w, this.h)
+	ctx.fillStyle = "#FFF";
+	ctx.fillText(this.menuText, this.w-this.x+15, this.y+30);
+	//this.drawButton(ctx);
+	ctx.stroke();
+  }
+  
+  /*drawButton(ctx){
+	util.fillBox(ctx, this.w-this.x, this.h/2-40, 100, 80);
+	ctx.fillStyle = "#000";
+	ctx.fillText("Unpause", 360, 290);
+  }*/
+	  
+  update() { 	
+  	
+  }
+>>>>>>> f8d0dcf4d3b2c7a568ee5a309d368ded7ab868ba
 
-    
+  render(ctx) {
+    if(this.menuShow) {  
+	 ctx.save();
+	 this.drawMenu(ctx)
+	 ctx.restore();
+	}
+  }
 }
