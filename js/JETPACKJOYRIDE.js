@@ -5,6 +5,7 @@ const entityManager = new EntityManager();
 const countManager = new CounterManager();
 const background1 = new Background(-1);
 const background2 = new Background(-2);
+const menu = new Menu();
 
 const achievement = new Achievement();
 
@@ -46,6 +47,7 @@ function renderSimulation(ctx) {
   entityManager.render(ctx);
   countManager.render(ctx);
   achievement.render(ctx);
+  menu.render(ctx);
 
   if (USE_SPATIAL) spatialManager.render(ctx);
 }

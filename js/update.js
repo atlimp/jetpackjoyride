@@ -58,6 +58,7 @@ let g_isUpdatePaused = false;
 function shouldSkipUpdate() {
   if (eatKey(KEY_PAUSE)) {
     g_isUpdatePaused = !g_isUpdatePaused;
+	menu.show();
   }
   return g_isUpdatePaused && !eatKey(KEY_STEP);
 }
