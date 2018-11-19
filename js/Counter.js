@@ -13,11 +13,11 @@ class Counter{
   minuteStat() {
 	  return this.minutes;
   }
-  
+
   secStat() {
 	return this.seconds;
   }
-  
+
   setPos(x, y) {
 	this.x = x;
 	this.y = y;
@@ -28,7 +28,7 @@ class Counter{
     if (this.count >= 60) {
       this.clock += 1;
       this.count = 0;
-    } 
+    }
 	console.log(this.seconds);
   }
 
