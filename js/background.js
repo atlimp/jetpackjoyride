@@ -42,7 +42,7 @@ class Background {
   }
 
   update(du) {
-    this.xOff += this.xVel * g_speedMult * du;
+    this.xOff += this.xVel * g_speedMult * g_timeSpeedMult * du;
     this.xOff %= this.width * this.images.length;
   }
 }

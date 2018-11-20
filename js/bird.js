@@ -33,7 +33,7 @@ class Bird extends Obstacle {
     if (this.isDead) return entityManager.KILL_ME_NOW;
 
     // Update x and y position
-    this.x += this.velX * g_speedMult * du;
+    this.x += this.velX * g_speedMult * g_timeSpeedMult * du;
     this.y  = Math.sin(this.angle) * this.ampl + this.origY;
 
     // Update angle for y position

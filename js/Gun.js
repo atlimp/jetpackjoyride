@@ -29,7 +29,7 @@ class Gun extends PowerUp {
         if (this.isDead) return entityManager.KILL_ME_NOW;
 
         // Fastur hraði
-        this.cx += this.velX * g_speedMult * du;
+        this.cx += this.velX * g_speedMult * g_timeSpeedMult * du;
         this.cy = this.originalY - Math.sin(this.angle) * this.ampl;
 
         this.angle += this.freq;

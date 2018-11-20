@@ -125,9 +125,9 @@ class Player extends Entity {
 
     if (this.isDead) {
       console.log('Dead');
-	  countManager.dead();
-	  //Setti this is dead sem false til að keyra counters áfram
-	  this.isDead = false;
+      countManager.dead();
+      //Setti this is dead sem false til að keyra counters áfram
+      this.isDead = false;
     }
 
     this.calcDimensions();
@@ -170,7 +170,7 @@ class Player extends Entity {
 
   kill() {
     entityManager.toggleMenu("DEAD!!!");
-	achievement.incDeath();    
+    achievement.incDeath();
   }
 
   checkForCollission() {
@@ -197,7 +197,7 @@ class Player extends Entity {
 
         switch (powerup) {
           case 'FillTank':
-		  achievement.incJetPack();
+          achievement.incJetPack();
           this.jetPackLifeTime = this.maxJetpackLifeTime;
           hit.consume();
           break;
@@ -208,10 +208,10 @@ class Player extends Entity {
           case 'Bar':
           // Set global speed multiplier to 2, speeds everything up
           if (this.carLifetime <= 0){
-			entityManager.setSpeedMult(2);
+            entityManager.setSpeedMult(2);
             achievement.updateCar(this.carLifetime);
-		  }        
-		  this.carLifetime = this.maxCarLifetime;
+          }
+          this.carLifetime = this.maxCarLifetime;
           hit.consume();
         }
       }
