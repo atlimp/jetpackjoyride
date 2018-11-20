@@ -27,7 +27,6 @@ function updateSimulation(du) {
   // Uppfærir bara ef ekki bíll
   if (entityManager.player.carLifetime === 0) {
     g_speedMult = util.map(counter, 1, 10, 1, 5);
-
   }
   
   if (eatKey(TOGGLE_SPATIAL)) USE_SPATIAL = !USE_SPATIAL;

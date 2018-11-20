@@ -1,7 +1,7 @@
 class Achievement  {
 
   constructor() {
-	this.achievements = [];
+	this.completed = [];
 	
 	this.box_W = 200;
 	this.box_H = 75;
@@ -12,11 +12,26 @@ class Achievement  {
 	
 	this.timeoutScore = 0;
 	this.currentTime = 0;
+	
+	this.numCar = 0;
+	this.numDeath = 0;
   }
   
   toSec(min) {
 	/*Converts minutes to seconds*/
 	return min*60;
+  }
+  
+  updateCar() {
+	/*Update number of times a car is used, does not count if you
+	are already using a car when fuel is filled*/
+	this.numCar += 1;
+  }
+  
+  incDeath(){
+	//Checks number of deaths
+	this.numDeath += 1;
+	console.log(this.numDeath);
   }
   
   drawBox(ctx) {
@@ -32,11 +47,11 @@ class Achievement  {
 	ctx.stroke(); 
   }
   
-  clockCheck() {
+  achievementCheck() {
 	/*Checks the current game stats to see if an achievement
 	  has been completeded and prompts the user*/
 	const clock = countManager.clockStat();
-	//Verðum að parseInt vegna þess að í counter er þetta string
+	//We must parse clock since we are fetching strings
 	const sec = parseInt(clock.sec);
 	const min = parseInt(clock.min);  
 	this.currentTime = sec + this.toSec(min);
@@ -63,10 +78,64 @@ class Achievement  {
 	    this.showBox = true;
 	    break;
 	}
+	
+	switch(this.numCar){
+	  case 1:
+		if(this.completed[0] != true) {
+	      this.timeoutScore = this.currentTime + 5;
+	      this.text = "Traveled in a car";
+		  this.showBox = true;
+		  this.completed[0] = true;
+		}
+	    break;
+	  case 5:
+	    if(this.completed[1] != true) {
+	      this.timeoutScore = this.currentTime + 5;
+	      this.text = "Traveled in a car 5 times";
+	      this.showBox = trueM
+		  this.completed[1] = true;
+		}
+	    break;
+	  case 10:
+	    if(this.completed[2] != true){
+	  	  this.timeoutScore = this.currentTime + 5;
+	      this.text = "Traveled in a car 10 times";
+	      this.showBox = true;
+          this.completed[2] = true;
+		}
+	    break;
+	}
+	
+	switch(this.numDeath){
+	  case 1:
+	    if(this.completed[3] != true) {
+	      this.timeoutScore = this.currentTime + 5;
+	      this.text = "Haha, you died";
+	      this.showBox = true;
+		  this.completed[3] = true;
+        }
+       break;
+	   case 5:
+	    if(this.completed[4] != true) {
+	      this.timeoutScore = this.currentTime + 5;
+	      this.text = "Cmon, you can do better?";
+	      this.showBox = true;
+		  this.completed[4] = true;
+        }
+       break;	
+	   case 10:
+	    if(this.completed[5] != true) {
+	      this.timeoutScore = this.currentTime + 5;
+	      this.text = "Really?";
+	      this.showBox = true;
+		  this.completed[5] = true;
+        }
+       break;	
+	}
   }
 	  
   update() { 	
-  	this.clockCheck();
+  	this.achievementCheck();
   }
 
   render(ctx) {
