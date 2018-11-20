@@ -51,14 +51,15 @@ class Achievement  {
 	ctx.stroke(); 
   }
   
-  showBoxAchievementTime(text) {
-	this.timeoutScore = this.currentTime + 5;
+  showBoxAchievementTime(text, time) {
+  	//Cant do overflow so had to make two
+	this.timeoutScore = time + 5;
     this.text = text;
     this.showBox = true;
   }
   
-  showBoxAchievement(index, text){
-	this.timeoutScore = this.currentTime + 5;
+  showBoxAchievement(index, text, time){
+	this.timeoutScore = time + 5;
 	this.text = text;
     this.showBox = true;
 	this.completed[index] = true;
@@ -75,33 +76,33 @@ class Achievement  {
 	
 	switch(this.currentTime) {
 	  case g_startTimer+10:
-		this.showBoxAchievementTime("Survive 10 sec!");
+		this.showBoxAchievementTime("Survive 10 sec!", this.currentTime);
 	    break;	
 	  case g_startTimer+60:
-        this.showBoxAchievementTime("Survive 1 minutes!");
+        this.showBoxAchievementTime("Survive 1 minutes!", this.currentTime);
 	    break;
 	  case g_startTimer+this.toSec(5):
-	    this.showBoxAchievementTime("Survive 5 minutes!");
+	    this.showBoxAchievementTime("Survive 5 minutes!", this.currentTime);
 	    break;
 	  case g_startTimer+this.toSec(10):
-	    this.showBoxAchievementTime("Survive the run!");
+	    this.showBoxAchievementTime("Survive the run!", this.currentTime);
 	    break;
 	}
 	
 	switch(this.numCar){
 	  case 1:
 		if(this.completed[0] != true) {
-	      this.showBoxAchievement(0, "Travel in a car!");
+	      this.showBoxAchievement(0, "Travel in a car!", this.currentTime);
 		}
 	    break;
 	  case 5:
 	    if(this.completed[1] != true) {
-	      this.showBoxAchievement(1, "Travel in a car 5 times!");
+	      this.showBoxAchievement(1, "Travel in a car 5 times!", this.currentTime);
 		}
 	    break;
 	  case 10:
 	    if(this.completed[2] != true){
-	  	  this.showBoxAchievement(2, "Travel in a car 10 times!");
+	  	  this.showBoxAchievement(2, "Travel in a car 10 times!", this.currentTime);
 		}
 	    break;
 	}
@@ -109,17 +110,17 @@ class Achievement  {
 	switch(this.numDeath){
 	  case 1:
 	    if(this.completed[3] != true) {
-	      this.showBoxAchievement(3, "Haha you died");
+	      this.showBoxAchievement(3, "Haha you died", this.currentTime);
         }
        break;
 	   case 5:
 	    if(this.completed[4] != true) {
-	      this.showBoxAchievement(4, "Cmon, you can do better?");
+	      this.showBoxAchievement(4, "Cmon, you can do better?", this.currentTime);
         }
        break;	
 	   case 10:
 	    if(this.completed[5] != true) {
-	      this.showBoxAchievement(5, "Really?");
+	      this.showBoxAchievement(5, "Really?", this.currentTime);
         }
        break;	
 	}
@@ -127,12 +128,12 @@ class Achievement  {
 	switch(this.jetPackUse){
 	  case 1:
 	    if(this.completed[6] != true) {
-	      this.showBoxAchievement(6, "Get a refuel!");
+	      this.showBoxAchievement(6, "Get a refuel!", this.currentTime);
         }
        break;
 	   case 5:
 	    if(this.completed[7] != true) {
-	      this.showBoxAchievement(7, "Buy a gas tank");
+	      this.showBoxAchievement(7, "Buy a gas tank", this.currentTime);
         }
 	}
   }
