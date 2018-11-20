@@ -205,9 +205,9 @@ class Player extends Entity {
           hit.consume();
           break;
           case 'Bar':
-          this.carLifetime = this.maxCarLifetime;
           // Set global speed multiplier to 2, speeds everything up
-          entityManager.setSpeedMult(2);
+          if (this.carLifetime <= 0) entityManager.setSpeedMult(2);
+          this.carLifetime = this.maxCarLifetime;
           hit.consume();
         }
       }

@@ -24,9 +24,10 @@ let USE_SPATIAL = false;
 
 function updateSimulation(du) {
   const counter = countManager.counters[0].minutes - 49;
-  //console.log(counter);
-  if (entityManager.player.carLifeTime === 0) {
-    g_speedMult = util.map(counter, 1, 10, 1, 3);
+  // Uppfærir bara ef ekki bíll
+  if (entityManager.player.carLifetime === 0) {
+    g_speedMult = util.map(counter, 1, 10, 1, 5);
+
   }
   
   if (eatKey(TOGGLE_SPATIAL)) USE_SPATIAL = !USE_SPATIAL;
