@@ -1,16 +1,22 @@
+/***
+ *  Bar class
+ *  Takes a sprite as parameter
+ *  Renders a bottle for a powerup
+ */
+
 class Bar extends PowerUp {
     constructor(sprite) {
         super(sprite);
         this.velY = 0;
+
+        // angle, ampl, originalY are for sin curve
+        // freq increments angle
         this.angle = 0;
         this.freq = util.randRange(0.05, 0.1);
         this.ampl = util.randRange(20, 70);
         this.originalY = this.cy;
-        this.rotation = 0;
-        this.freq = util.randRange(0.05, 0.1);
     }
 
-    // Rotation á render
     render(ctx) {
         ctx.save();
         this.sprite.drawCentredAt(ctx, this.cx, this.cy);
@@ -18,8 +24,10 @@ class Bar extends PowerUp {
     }
 
     update(du) {
+        // spatialManager unregister before each update
         spatialManager.unregister(this);
 
+        // Causes splice if entity is dead
         if (this.isDead) return entityManager.KILL_ME_NOW;
 
         this.cy = Math.sin(this.angle) * this.ampl + this.originalY;
