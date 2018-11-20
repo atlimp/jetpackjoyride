@@ -245,6 +245,8 @@ class Player extends Entity {
       this.isJumping = true
       thrust += NOMINAL_THRUST*30;
     }
+    //Checks if the fuel level is 0 and sets the level as 0 in achievement
+    if(this.jetPackLifeTime <= 0) achievement.currentJetFuel(this.jetPackLifeTime);
 
     return thrust;
   }
