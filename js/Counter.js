@@ -7,7 +7,6 @@ class Counter{
   this.display;
   this.x = 300;
   this.y = 200;
-  this.date = new Date('1995-12-17T17:50:50')
   }
 
   minuteStat() {
