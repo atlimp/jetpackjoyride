@@ -113,9 +113,7 @@ class EntityManager {
   createRandomPowerUp() {
     if (this.powerups.length <= 2) {
       let rand = Math.floor(Math.random()*this.powerupsFunc.length);
-      //let func = this.powerupsFunc[rand];
-      // temp test
-      let func = this.powerupsFunc[1];
+      let func = this.powerupsFunc[rand];
       this.powerups.push(func());
     }
 
