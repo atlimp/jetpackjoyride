@@ -24,24 +24,29 @@ class Bar extends PowerUp {
     }
 
     update(du) {
-        // spatialManager unregister before each update
+        // Unregister from spatialManager before each update
         spatialManager.unregister(this);
 
-        // Causes splice if entity is dead
+        // Causes splice in entityManager if entity is dead
         if (this.isDead) return entityManager.KILL_ME_NOW;
 
+        // Sin curve on y-axis and change in x dependent 
+        // on car and time
         this.cy = Math.sin(this.angle) * this.ampl + this.originalY;
         this.cx += this.velX * g_speedMult * g_timeSpeedMult * du;
 
+        // 360° modulo on the angle, increments small amount 
+        // in each update
         this.angle += this.freq;
         this.angle = this.angle > Math.PI * 2 ? 0 : this.angle;
 
-        // Flöskurnar svífa upp og niður en nálgast botninn
+        // Bottle is slowly descending
         this.originalY += 0.3;
 
+        // Kill entity if gone off canvas on the left
         if (this.cx < -g_canvas.width/6) this.kill();
 
-        // dunno
+        // Register if not dead
         spatialManager.register(this);
     }
 
