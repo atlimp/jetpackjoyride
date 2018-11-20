@@ -197,6 +197,7 @@ class Player extends Entity {
 
         switch (powerup) {
           case 'FillTank':
+		  achievement.incJetPack();
           this.jetPackLifeTime = this.maxJetpackLifeTime;
           hit.consume();
           break;
