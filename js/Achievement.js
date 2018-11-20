@@ -1,7 +1,7 @@
 class Achievement  {
 
   constructor() {
-	this.achievements = [];
+	this.completed = [];
 	
 	this.box_W = 200;
 	this.box_H = 75;
@@ -12,11 +12,30 @@ class Achievement  {
 	
 	this.timeoutScore = 0;
 	this.currentTime = 0;
+	
+	this.numCar = 0;
+	this.numDeath = 0;
+	this.jetPackUse = 0;
   }
   
   toSec(min) {
 	/*Converts minutes to seconds*/
 	return min*60;
+  }
+  
+  updateCar() {
+	/*Update number of times a car is used, does not count if you
+	are already using a car when fuel is filled*/
+	this.numCar++;
+  }
+  
+  incDeath(){
+	//Checks number of deaths
+	this.numDeath++;
+  }
+  
+  incJetPack(){
+	this.jetPackUse++;
   }
   
   drawBox(ctx) {
@@ -32,41 +51,94 @@ class Achievement  {
 	ctx.stroke(); 
   }
   
-  clockCheck() {
+  showBoxAchievementTime(text) {
+	this.timeoutScore = this.currentTime + 5;
+    this.text = text;
+    this.showBox = true;
+  }
+  
+  showBoxAchievement(index, text){
+	this.timeoutScore = this.currentTime + 5;
+	this.text = text;
+    this.showBox = true;
+	this.completed[index] = true;
+  }
+  
+  achievementCheck() {
 	/*Checks the current game stats to see if an achievement
 	  has been completeded and prompts the user*/
 	const clock = countManager.clockStat();
-	//Verðum að parseInt vegna þess að í counter er þetta string
+	//We must parse clock since we are fetching strings
 	const sec = parseInt(clock.sec);
 	const min = parseInt(clock.min);  
 	this.currentTime = sec + this.toSec(min);
 	
 	switch(this.currentTime) {
 	  case g_startTimer+10:
-	    this.timeoutScore = this.currentTime + 5;
-	    this.text = "Survived 10sec";
-	    this.showBox = true
+		this.showBoxAchievementTime("Survive 10 sec!");
 	    break;	
 	  case g_startTimer+60:
-        this.timeoutScore = this.currentTime + 5;
-	    this.text = "Survive a minute";
-	    this.showBox = true;
+        this.showBoxAchievementTime("Survive 1 minutes!");
 	    break;
 	  case g_startTimer+this.toSec(5):
-	    this.timeoutScore = this.currentTime + 5;
-	    this.text = "Survive 5 minutes";
-	    this.showBox = true;
+	    this.showBoxAchievementTime("Survive 5 minutes!");
 	    break;
 	  case g_startTimer+this.toSec(10):
-	    this.timeoutScore = this.currentTime + 5;
-	    this.text = "Complete the run";
-	    this.showBox = true;
+	    this.showBoxAchievementTime("Survive the run!");
 	    break;
+	}
+	
+	switch(this.numCar){
+	  case 1:
+		if(this.completed[0] != true) {
+	      this.showBoxAchievement(0, "Travel in a car!");
+		}
+	    break;
+	  case 5:
+	    if(this.completed[1] != true) {
+	      this.showBoxAchievement(1, "Travel in a car 5 times!");
+		}
+	    break;
+	  case 10:
+	    if(this.completed[2] != true){
+	  	  this.showBoxAchievement(2, "Travel in a car 10 times!");
+		}
+	    break;
+	}
+	
+	switch(this.numDeath){
+	  case 1:
+	    if(this.completed[3] != true) {
+	      this.showBoxAchievement(3, "Haha you died");
+        }
+       break;
+	   case 5:
+	    if(this.completed[4] != true) {
+	      this.showBoxAchievement(4, "Cmon, you can do better?");
+        }
+       break;	
+	   case 10:
+	    if(this.completed[5] != true) {
+	      this.showBoxAchievement(5, "Really?");
+        }
+       break;	
+	}
+	
+	switch(this.jetPackUse){
+	  case 1:
+	    if(this.completed[6] != true) {
+	      this.showBoxAchievement(6, "Get a refuel!");
+        }
+       break;
+	   case 5:
+	    if(this.completed[7] != true) {
+	      this.showBoxAchievement(7, "Buy a gas tank");
+        }
 	}
   }
 	  
   update() { 	
-  	this.clockCheck();
+  	this.achievementCheck();
   }
 
   render(ctx) {

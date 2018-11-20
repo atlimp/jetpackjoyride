@@ -161,14 +161,6 @@ class EntityManager {
 
   // Sets global speed multiplier
   setSpeedMult(val) {
-    if (val === 2) {
-      this.oldSpeedMult = g_speedMult;
-      g_speedMult *= val;
-    }
-    else {
-      g_speedMult = this.oldSpeedMult;
-
-    }
-    
-  }
+    g_speedMult = val;
+  }  
 }

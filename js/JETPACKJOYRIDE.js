@@ -16,6 +16,7 @@ const g_startTimer = 50*60;
 
 // Global speed multiplier, simplifies speeding everything up
 let g_speedMult = 1;
+let g_timeSpeedMult = 1;
 
 const TOGGLE_SPATIAL = keyCode('0');
 const TOGGLE_MENU = 27; // Escape
@@ -24,12 +25,8 @@ let USE_SPATIAL = false;
 
 function updateSimulation(du) {
   const counter = countManager.counters[0].minutes - 49;
-  // Uppfærir bara ef ekki bíll
-  if (entityManager.player.carLifetime === 0) {
-    g_speedMult = util.map(counter, 1, 10, 1, 5);
+  g_timeSpeedMult = util.map(counter, 1, 10, 1, 3);
 
-  }
-  
   if (eatKey(TOGGLE_SPATIAL)) USE_SPATIAL = !USE_SPATIAL;
 
 
