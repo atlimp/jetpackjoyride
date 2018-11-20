@@ -16,6 +16,8 @@ class Achievement  {
 	this.numCar = 0;
 	this.numDeath = 0;
 	this.jetPackUse = 0;
+
+	this.jetFuel = 1;
   }
   
   toSec(min) {
@@ -36,6 +38,10 @@ class Achievement  {
   
   incJetPack(){
 	this.jetPackUse++;
+  }
+
+  currentJetFuel(fuel) {
+  	this.jetFuel = fuel;
   }
   
   drawBox(ctx) {
@@ -136,6 +142,11 @@ class Achievement  {
 	      this.showBoxAchievement(7, "Buy a gas tank", this.currentTime);
         }
 	}
+
+	if(this.jetFuel <= 0 && this.completed[8] != true){
+		this.showBoxAchievement(8, "Empty your fuel", this.currentTime);
+	} 
+
   }
 	  
   update() { 	
