@@ -105,10 +105,13 @@ const util = {
     };
   },
 
-  playAudio: (url) => {
+  playAudio: (url, volume = 1, loop) => {
     const audio = new Audio();
     audio.src = url;
+    audio.volume = volume;
+    audio.loop = loop;
     audio.play();
+    return audio;
   },
 
   map: function(x, a, b, c, d) {
