@@ -7,6 +7,7 @@ class Car extends Obstacle {
   }
 
   render(ctx) {
+    // if (Math.random() < 0.01) util.playAudio(g_audio.horn2);
     this.sprite.drawCentredAt(ctx, this.x, this.y);
   }
 }

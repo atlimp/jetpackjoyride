@@ -12,6 +12,8 @@ class Rocket extends Obstacle {
     this.yVel = 0;
 
     this.scale = 0.3;
+
+    this.playingAudio = false;
   }
 
   render(ctx) {
@@ -44,6 +46,10 @@ class Rocket extends Obstacle {
     }
     // Otherwise only update x pos, y pos is locked in after looking
     else {
+      if (!this.playingAudio) {
+        util.playAudio(g_audio.rocket, 0.05);
+        this.playingAudio = true;
+      }
       this.xVel += this.accelX * du;
       this.x += this.xVel * du;
     }

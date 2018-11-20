@@ -49,6 +49,10 @@ class EntityManager {
 
     const rand = Math.floor(Math.random() * images.length);
 
+    const audio = [g_audio.horn1, g_audio.horn2];
+
+    util.playAudio(audio[Math.floor(Math.random()*2)]);
+
     return new Car(
       g_canvas.width * 2,
       g_canvas.height,
@@ -59,6 +63,7 @@ class EntityManager {
   createBird() {
     const range = util.randRange(70, 120);
     const sprite = new Sprite(g_images.bird, 0.8);
+    util.playAudio(g_audio.seagull);
 
     return new Bird(g_canvas.width * 2, range, sprite);
   }
@@ -160,5 +165,5 @@ class EntityManager {
   // Sets global speed multiplier
   setSpeedMult(val) {
     g_speedMult = val;
-  }  
+  }
 }

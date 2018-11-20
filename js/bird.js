@@ -51,7 +51,6 @@ class Bird extends Obstacle {
   }
 
   render(ctx) {
-
     // Calculate coordinates for current cell to be drawn
     const {
       subX,

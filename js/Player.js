@@ -151,6 +151,7 @@ class Player extends Entity {
 
     // Maybe fire bullet
     if (this.numBullets > 0 && eatKey(this.KEY_USE)) {
+      util.playAudio(g_audio.gun);
       this.numBullets--;
       entityManager.createBullet(this.x, this.y);
     }
@@ -169,6 +170,7 @@ class Player extends Entity {
   }
 
   kill() {
+    util.playAudio(g_audio.scream);
     entityManager.toggleMenu("DEAD!!!");
     achievement.incDeath();
   }
@@ -192,8 +194,9 @@ class Player extends Entity {
         else this.kill();
       }
       // Otherwise check which powerup was collected
-      else {
+      else if (which === 'PowerUp'){
         const powerup = hit.constructor.name;
+        util.playAudio(g_audio.pop);
 
         switch (powerup) {
           case 'FillTank':
@@ -245,6 +248,8 @@ class Player extends Entity {
       this.isJumping = true
       thrust += NOMINAL_THRUST*30;
     }
+    //Checks if the fuel level is 0 and sets the level as 0 in achievement
+    if(this.jetPackLifeTime <= 0) achievement.currentJetFuel(this.jetPackLifeTime);
 
     return thrust;
   }

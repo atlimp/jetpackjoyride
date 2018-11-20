@@ -6,6 +6,8 @@ let countManager;
 let background1;
 let background2;
 let menu;
+let themesong;
+
 
 let g_quit = false;
 
@@ -20,6 +22,9 @@ let g_timeSpeedMult = 1;
 
 const TOGGLE_SPATIAL = keyCode('0');
 const TOGGLE_MENU = 27; // Escape
+
+const TOGGLE_MUTE = keyCode('M');
+let MUTED = false;
 let USE_SPATIAL = false;
 
 
@@ -28,6 +33,10 @@ function updateSimulation(du) {
   g_timeSpeedMult = util.map(counter, 1, 10, 1, 3);
 
   if (eatKey(TOGGLE_SPATIAL)) USE_SPATIAL = !USE_SPATIAL;
+  if (eatKey(TOGGLE_MUTE)) {
+    MUTED = !MUTED;
+    themesong.muted = MUTED;
+  }
 
 
   if (Math.random() < counter * 0.01) {
@@ -64,6 +73,16 @@ function renderSimulation(ctx) {
 }
 
 const g_images = {};
+const g_audio = {
+  horn1: 'audio/car-horn-hectic.wav',
+  horn2: 'audio/car-horn-short.wav',
+  pop: 'audio/pop.flac',
+  scream: 'audio/scream-no.wav',
+  seagull: 'audio/seagull.ogg',
+  rocket: 'audio/woosh.mp3',
+  theme: 'audio/theme.mp3',
+  gun: 'audio/gun.wav'
+}
 
 function initVariables() {
   entityManager = new EntityManager();
@@ -128,6 +147,7 @@ function start() {
       g_images[keys[i]] = image;
     }
 
+    themesong = util.playAudio(g_audio.theme, 1, true);
     start();
   } catch (e) {
     console.error(e);
