@@ -16,7 +16,8 @@ class Player extends Entity {
 
     // For gun powerup
     this.bulletInc = 3;
-    this.numBullets = 0;
+    // temp change
+    this.numBullets = 100;
 
     //Keys for movement
     this.KEY_USE = keyCode('F');

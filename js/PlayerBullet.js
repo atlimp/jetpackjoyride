@@ -1,9 +1,9 @@
 class PlayerBullet extends Entity {
   constructor(sprite, playerX, playerY) {
     super()
-    this.cx = playerX + 15;
-    this.cy = playerY + 15;
-    this.originalY = this.cy;
+    this.cx = playerX;
+    this.cy = playerY;
+    
     this.velX = 5;
     this.offsetX = 10;
     this.offsetY = 40
@@ -11,6 +11,7 @@ class PlayerBullet extends Entity {
     this.angle = (Math.PI)/4;
     this.ampl = 150;
     this.freq = 0.025;
+    this.originalY = this.cy + Math.sin(Math.PI / 4) * this.ampl;
     this.rotation = 0;
     this.toRad = Math.PI/180;
 
@@ -40,18 +41,19 @@ class PlayerBullet extends Entity {
 
     this.cx += this.velX * du;
     this.cy = (
-      this.originalY +
-      this.offsetY -
+      this.originalY -
       Math.sin(this.angle) *
       this.ampl
     );
 
     this.angle += this.freq;
 
+    this.originalY += du;
+
     this.rotation += 25;
     this.rotation = this.rotation > 360 ? 0 : this.rotation;
 
-    if (this.cx > g_canvas.width + this.offsetX) this.kill();
+    if (this.cy > g_canvas.height - this.halfHeight) this.kill();
 
     this.checkForCollission();
 
