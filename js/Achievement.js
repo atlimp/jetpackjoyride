@@ -91,7 +91,8 @@ class Achievement  {
 	    this.showBoxAchievementTime("Survive 5 minutes!", this.currentTime);
 	    break;
 	  case g_startTimer+this.toSec(10):
-	    this.showBoxAchievementTime("Survive the run!", this.currentTime);
+	    this.showBoxAchievementTime("Make it to the Vínbúðinn", this.currentTime);
+	    main.gameOver();
 	    break;
 	}
 	
