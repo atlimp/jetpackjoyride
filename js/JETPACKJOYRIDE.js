@@ -77,8 +77,9 @@ const g_audio = {
   rocket: 'audio/woosh.mp3',
   theme: 'audio/theme.mp3',
   gun: 'audio/gun.wav',
-  deadBird: 'audio/deadBird.wav'
-}
+  deadBird: 'audio/deadBird.wav',
+  deadCar: 'audio/deadcar.wav'
+};
 
 function initVariables() {
   entityManager = new EntityManager();

@@ -28,8 +28,8 @@ class Bird extends Obstacle {
   }
 
   kill() {
-    this.isDead = true;
     util.playAudio(g_audio.deadBird, 0.5, false);
+    this.isDead = true;
   }
 
   update(du) {
