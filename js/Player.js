@@ -116,7 +116,7 @@ class Player extends Entity {
     ctx.save();
     util.drawImage(ctx, g_images.bullet, 10, 55, 0.2);
     ctx.fillStyle = '#000000';
-    ctx.font = '30px sans-serif';
+    ctx.font = '30px Courier New';
     ctx.fillText(this.numBullets, 40, 85);
     ctx.restore();
   }
