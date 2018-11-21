@@ -4,7 +4,7 @@ class Menu {
     this.y = 50;
     this.width = g_canvas.width - 100;
     this.height = g_canvas.height - 100;
-    this.text = "Jetpack Joyride!";
+    this.text = 'Jetpack Joyride!';
 
     this.quit = {
       x: this.x + this.width/2 - 125,
@@ -41,11 +41,10 @@ class Menu {
 
     if (x > this.resume.x && x < this.resume.x + this.resume.width) {
       if (y > this.resume.y && y < this.resume.y + this.resume.height) {
+        useMenu = false;
         if (this.doNewGame) {
           console.log('ýtti á newGame');
           start();
-        } else {
-          useMenu = false;
         }
       }
     }

@@ -32,7 +32,6 @@ class EntityManager {
   toggleMenu(text) {
     menu.setText(text);
     useMenu = true;
-
   }
 
   /****************************************

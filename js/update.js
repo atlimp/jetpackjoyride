@@ -18,7 +18,7 @@ let g_prevUpdateDu = null;
 let g_isUpdateOdd = false;
 
 // Boolean fyrir menu
-let useMenu = false;
+let useMenu = true;
 
 
 function update(dt) {
@@ -29,6 +29,11 @@ function update(dt) {
     useMenu = true; //!useMenu;
     // const fart = new Menu();
     // fart.render(g_ctx);
+  }
+
+  if (eatKey(TOGGLE_MUTE)) {
+    MUTED = !MUTED;
+    themesong.muted = MUTED;
   }
 
   if (shouldSkipUpdate()) return;

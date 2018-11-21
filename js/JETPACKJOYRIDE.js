@@ -33,11 +33,6 @@ function updateSimulation(du) {
   g_timeSpeedMult = util.map(counter, 1, 10, 1, 3);
 
   if (eatKey(TOGGLE_SPATIAL)) USE_SPATIAL = !USE_SPATIAL;
-  if (eatKey(TOGGLE_MUTE)) {
-    MUTED = !MUTED;
-    themesong.muted = MUTED;
-  }
-
 
   if (Math.random() < counter * 0.01) {
     entityManager.createRandomObstacle();
@@ -80,7 +75,7 @@ const g_audio = {
   scream: 'audio/scream-no.wav',
   seagull: 'audio/seagull.ogg',
   rocket: 'audio/woosh.mp3',
-  theme: 'audio/theme.mp3',
+  theme: 'audio/theme.wav',
   gun: 'audio/gun.wav'
 }
 
@@ -91,12 +86,34 @@ function initVariables() {
   background1 = new Background(-1);
   background2 = new Background(-2);
   menu = new Menu();
-  useMenu = false;
 }
+
+function initialStart() {
+  initVariables();
+  menu.setText('Jetpack Joyride!');
+  entityManager.createPlayer();
+
+  countManager.createCounter();
+
+  background1.setImages([
+    g_images.mountain,
+  ]);
+
+  background2.setImages([
+    g_images.backtrans1,
+    g_images.backtrans2,
+    g_images.backtrans3,
+    g_images.backtrans4,
+  ]);
+
+  main.init();
+}
+
 
 
 // Initial function after images have been loaded
 function start() {
+  if (!themesong) themesong = util.playAudio(g_audio.theme, 1, true);
   initVariables();
   entityManager.createPlayer();
 
@@ -147,8 +164,7 @@ function start() {
       g_images[keys[i]] = image;
     }
 
-    themesong = util.playAudio(g_audio.theme, 1, true);
-    start();
+    initialStart();
   } catch (e) {
     console.error(e);
   }
