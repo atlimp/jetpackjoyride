@@ -24,8 +24,9 @@ main.iter = function(frameTime) {
   if (!this._isGameOver) this._requestNextIteration();
   else{
    g_ctx.fillStyle = "#000";
-   util.fillbox(g_ctx, 0, 0, g_canvas.width, g_canvas.height);
-   g_ctx.fillStyle = "#FFF";
+   util.fillBox(g_ctx, 0, 0, g_canvas.width, g_canvas.height);
+   g_ctx.fillStyle = "#FFF"
+   g_ctx.fillText("Game over", g_canvas.width/2, g_canvas.height/2);
  }
 
 };
