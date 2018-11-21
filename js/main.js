@@ -1,5 +1,7 @@
 let reqID = undefined;
 
+let g_quit = false;
+
 const main = {
 
   // "Frame Time" is a (potentially high-precision) frame-clock for animations
@@ -23,12 +25,15 @@ main.iter = function(frameTime) {
   // Request the next iteration if needed
   if (!this._isGameOver) this._requestNextIteration();
   else{
-   g_ctx.fillStyle = "#000";
-   util.fillBox(g_ctx, 0, 0, g_canvas.width, g_canvas.height);
-   g_ctx.fillStyle = "#FFF";
-   g_ctx.textAlign = "center";
-   g_ctx.fillText("Game over", g_canvas.width/2, g_canvas.height/2);
- }
+    g_ctx.fillStyle = "#000";
+    util.fillBox(g_ctx, 0, 0, g_canvas.width, g_canvas.height);
+    g_ctx.fillStyle = "#FFF";
+    g_ctx.textAlign = "center";
+    g_ctx.fillText("Game over", g_canvas.width/2, g_canvas.height/2);
+    window.setTimeout(() => {
+      window.close();
+    }, 3000);
+  }
 
 };
 
@@ -79,7 +84,7 @@ function mainIterFrame(frameTime) {
 
 main._requestNextIteration = function () {
   // if (!reqID) {
-    reqID = window.requestAnimationFrame(mainIterFrame);
+  reqID = window.requestAnimationFrame(mainIterFrame);
   // }
 };
 

@@ -1,7 +1,7 @@
 /***
- * Menu class
- * Renders text to canvas
- */
+* Menu class
+* Renders text to canvas
+*/
 
 class Menu {
   constructor() {
@@ -33,7 +33,7 @@ class Menu {
     this.doNewGame = false;
   }
 
-  // Sets resume button text to 'NEW GAME', sets header text to 
+  // Sets resume button text to 'NEW GAME', sets header text to
   // parameter text
   setText(text) {
     this.text = text;
@@ -41,18 +41,12 @@ class Menu {
     this.doNewGame = true;
   }
 
-  endGame(ctx){
-    ctx.fillStyle = "#000"
-    util.fillBox(ctx, 0, 0, g_canvas.width, g_canvas.height);
-  }
-
   // Checks which button the mouse clicked, getting dimension of each button
   whichButton(x, y) {
     if (x > this.quit.x && x < this.quit.x + this.quit.width) {
       if (y > this.quit.y && y < this.quit.y + this.quit.height) {
-        this.endGame(g_ctx);
         console.log('ýtti á quit');
-        g_quit = true;
+        main.gameOver();
       }
     }
 
@@ -92,6 +86,4 @@ class Menu {
 
     ctx.restore();
   }
-
-
 }

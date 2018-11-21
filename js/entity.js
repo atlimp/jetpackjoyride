@@ -1,3 +1,7 @@
+/***************************
+**  Generic Entity Class  **
+***************************/
+
 class Entity {
 
   constructor() {
@@ -10,6 +14,6 @@ class Entity {
   }
 
   kill() {
-      this.isDead = true;
+    this.isDead = true;
   }
 }

@@ -1,7 +1,7 @@
 /***
- * PlayerBullet class
- * Creates bullet sprites
- */
+* PlayerBullet class
+* Creates bullet sprites
+*/
 
 class PlayerBullet extends Entity {
   constructor(sprite, playerX, playerY) {

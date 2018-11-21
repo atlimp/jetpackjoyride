@@ -9,8 +9,6 @@ let menu;
 let themesong;
 
 
-let g_quit = false;
-
 const achievement = new Achievement();
 
 const g_startTimer = 50*60;
@@ -29,11 +27,13 @@ let USE_SPATIAL = false;
 
 
 function updateSimulation(du) {
+  // Minutes passed since start
   const counter = countManager.counters[0].minutes - 49;
   g_timeSpeedMult = util.map(counter, 1, 10, 1, 3);
 
   if (eatKey(TOGGLE_SPATIAL)) USE_SPATIAL = !USE_SPATIAL;
 
+  // Probability of obstacle increases as game goes on
   if (Math.random() < counter * 0.01) {
     entityManager.createRandomObstacle();
   }

@@ -107,7 +107,13 @@ class EntityManager {
   createRandomObstacle(du) {
     if (this.obstacles.length > 4) return;
 
-    const rand = Math.floor(Math.random() * this.obstacleConstructors.length);
+    const len = Math.random() < 0.3 ?
+      this.obstacleConstructors.length :
+      this.obstacleConstructors.length - 1; 
+
+    // Less chance of rockets
+    const rand = Math.floor(Math.random() * len);
+
     const obs = this.obstacleConstructors[rand];
     this.obstacles.push(obs());
   }
@@ -120,7 +126,6 @@ class EntityManager {
       let func = this.powerupsFunc[rand];
       this.powerups.push(func());
     }
-
   }
 
   render(ctx) {
@@ -136,8 +141,8 @@ class EntityManager {
       if (this.obstacles[i].update(du) === this.KILL_ME_NOW) {
         this.obstacles.splice(i, 1);
       }
-
     }
+
     this.player.update(du);
 
     for (let i = this.powerups.length - 1; i >= 0; i--) {
@@ -145,7 +150,6 @@ class EntityManager {
       if (this.powerups[i].update(du) === this.KILL_ME_NOW) {
         this.powerups.splice(i, 1);
       }
-
     }
 
     for (let i = this.bullets.length - 1; i >= 0; i--) {
@@ -153,7 +157,6 @@ class EntityManager {
       if (this.bullets[i].update(du) === this.KILL_ME_NOW) {
         this.bullets.splice(i, 1);
       }
-
     }
   }
 

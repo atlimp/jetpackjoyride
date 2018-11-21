@@ -1,30 +1,30 @@
 class Counter{
   constructor() {
-  this.count = 0;
-  this.clock = g_startTimer; //Setja klukkuna á 10min timer 50min x 60sec
-  this.minutes = 0;
-  this.seconds = 0;
-  this.display;
-  this.x = 300;
-  this.y = 200;
+    this.count = 0;
+    this.clock = g_startTimer; //Setja klukkuna á 10min timer 50min x 60sec
+    this.minutes = 0;
+    this.seconds = 0;
+    this.display;
+    this.x = 300;
+    this.y = 200;
   }
 
   minuteStat() {
-	  return this.minutes;
+    return this.minutes;
   }
 
   secStat() {
-	return this.seconds;
+    return this.seconds;
   }
 
   setPos(x, y) {
-	this.x = x;
-	this.y = y;
+    this.x = x;
+    this.y = y;
   }
 
   update(du) {
     // clock incremented by 1 after 60*du
-    this.count += 1 
+    this.count += 1;
     if (this.count >= 60) {
       this.clock += 1;
       this.count = 0;
@@ -32,8 +32,8 @@ class Counter{
   }
 
   render(ctx) {
-    // Render clock display 
-    ctx.font = "20px Arial";
+    // Render clock display
+    ctx.font = "20px Courier New";
     // Variable clock div 60 returns minutes
     this.minutes = Math.floor(this.clock / 60) > 9 ? Math.floor(this.clock / 60) : "0" + (Math.floor(this.clock / 60)).toString();
     // Variable clock modulo 60 returns seconds
@@ -42,5 +42,4 @@ class Counter{
     // Context fillText to display time
     ctx.fillText(this.display, this.x, this.y);
   }
-
 }
