@@ -1,7 +1,9 @@
 class PowerUp extends Entity {
     constructor(sprite) {
         super();
+        // Gets the sprite as parameter
         this.sprite = sprite;
+        // Keeps entity within canvas
         this.yOff = 80;
         this.xOff = 40;
         this.velX = -2;
@@ -18,6 +20,7 @@ class PowerUp extends Entity {
 
     }
 
+    // Render powerups
     render(ctx) {
         ctx.save();
         g_ctx.fillStyle = 'red';
@@ -25,20 +28,21 @@ class PowerUp extends Entity {
         ctx.restore();
     }
 
+    // Update powerup
     update(du) {
+        // Unregister from spatial manager
         spatialManager.unregister(this);
 
+        // Run splice in entity manager if entity is dead
         if (this.isDead) return entityManager.KILL_ME_NOW;
 
-        let nextX = this.cx + this.velX * du;
-        let nextY = this.cy + this.yVel * du;
-
-        this.cy += this.velY * du;
+        // Constant velocity on x
         this.cx += this.velX * du;
 
+        // If entity has gone off the canvas on the left, kill it
         if (this.cx < -g_canvas.width/6) this.kill();
 
-        // dunno
+        // Register in spatial manager
         spatialManager.register(this);
     }
 

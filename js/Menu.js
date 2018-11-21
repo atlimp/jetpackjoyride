@@ -1,3 +1,8 @@
+/***
+ * Menu class
+ * Renders text to canvas
+ */
+
 class Menu {
   constructor() {
     this.x = 50;
@@ -6,6 +11,7 @@ class Menu {
     this.height = g_canvas.height - 100;
     this.text = 'Jetpack Joyride!';
 
+    // Object to render quit button
     this.quit = {
       x: this.x + this.width/2 - 125,
       y: this.y + 150,
@@ -14,6 +20,7 @@ class Menu {
       text: 'QUIT!'
     };
 
+    // Object to render resume button
     this.resume = {
       x: this.x + this.width/2 - 125,
       y: this.y + 300,
@@ -22,15 +29,19 @@ class Menu {
       text: 'RESUME!'
     };
 
+    // Boolean to know if function for new game should run
     this.doNewGame = false;
   }
 
+  // Sets resume button text to 'NEW GAME', sets header text to 
+  // parameter text
   setText(text) {
     this.text = text;
     this.resume.text = 'NEW GAME';
     this.doNewGame = true;
   }
 
+  // Checks which button the mouse clicked, getting dimension of each button
   whichButton(x, y) {
     if (x > this.quit.x && x < this.quit.x + this.quit.width) {
       if (y > this.quit.y && y < this.quit.y + this.quit.height) {
@@ -50,6 +61,7 @@ class Menu {
     }
   }
 
+  // Render menu
   render(ctx) {
     ctx.save();
     ctx.fillStyle = 'black';

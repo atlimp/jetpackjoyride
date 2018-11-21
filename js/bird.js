@@ -27,6 +27,11 @@ class Bird extends Obstacle {
     this.origY = y;
   }
 
+  kill() {
+    this.isDead = true;
+    util.playAudio(g_audio.deadBird, 0.5, false);
+  }
+
   update(du) {
     spatialManager.unregister(this);
 
