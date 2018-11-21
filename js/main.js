@@ -22,6 +22,12 @@ main.iter = function(frameTime) {
 
   // Request the next iteration if needed
   if (!this._isGameOver) this._requestNextIteration();
+  else{
+   g_ctx.fillStyle = "#000";
+   util.fillbox(g_ctx, 0, 0, g_canvas.width, g_canvas.height);
+   g_ctx.fillStyle = "#FFF";
+ }
+
 };
 
 main._updateClocks = function (frameTime) {
