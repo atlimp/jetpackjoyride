@@ -81,7 +81,8 @@ const g_audio = {
   seagull: 'audio/seagull.ogg',
   rocket: 'audio/woosh.mp3',
   theme: 'audio/theme.mp3',
-  gun: 'audio/gun.wav'
+  gun: 'audio/gun.wav',
+  deadBird: 'audio/deadBird.wav'
 }
 
 function initVariables() {
