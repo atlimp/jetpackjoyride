@@ -51,13 +51,11 @@ class Achievement  {
 	const oldLength = text.length;
 	let exractedText = "";
 	let x = text.length;
-	console.log("Start Loop")
 	for(x; x > 0; x--){
 	  if(text[x] === " ") extractedText += text.slice(x+1, text.length) + " ";
 	  if(text.length < oldLength){
 		ctx.fillText(text, x+15, y+40);
 		ctx.fillText(extractedText, x, y+40);
-		console.log("End loop");
 		return;
 	  }
 	}
@@ -74,7 +72,6 @@ class Achievement  {
     ctx.fillStyle = "#FFF";
 	
 	const textLength = ctx.measureText(this.text);
-	console.log(textLength);
 	if(textLength > this.box_W) this.displayAlign(this.text, x, y);
 	else ctx.fillText(this.text, x+15, y+40);
     
