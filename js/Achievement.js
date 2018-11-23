@@ -53,7 +53,7 @@ class Achievement  {
     util.fillBox(ctx, x, y, this.box_W, this.box_H);
     ctx.globalAlpha = 0.4;
     ctx.fillStyle = "#FFF";
-    ctx.fillText(this.text, (x+30), (y+40));
+    ctx.fillText(this.text, (x+15), (y+40));
     ctx.stroke();
   }
 
