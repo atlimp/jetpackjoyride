@@ -45,6 +45,9 @@ class Achievement  {
   }
   
   displayAlign(text, x, y){
+	/*
+	checks if the text length is longer than the box and aligns it
+	*/
 	const oldLength = text.length;
 	let exractedText = "";
 	let x = text.length;
