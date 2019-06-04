@@ -50,8 +50,7 @@ class Achievement  {
 	*/
 	const oldLength = text.length;
 	let exractedText = "";
-	let x = text.length;
-	for(x; x > 0; x--){
+	for(let x = text.length; x > 0; x--){
 	  if(text[x] === " ") extractedText += text.slice(x+1, text.length) + " ";
 	  if(text.length < oldLength){
 		ctx.fillText(text, x+15, y+40);
